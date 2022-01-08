@@ -13,19 +13,17 @@ namespace Media2A.WebApp
             // Check default config files and generate them if none is found.
             try
             {
-                Framework.ValidateConfigFile("database.json", Database_Object.DO());
-                Framework.ValidateConfigFile("webapp.json", WebApp_Object.DO());
+                CodeLogic_Framework.ValidateConfigFile("database.json", Database_Object.GenerateModel());
+                CodeLogic_Framework.ValidateConfigFile("webapp.json", WebApp_Object.GenerateModel());
             }
             catch (Exception ex)
             {
                 httpContent.Response.WriteAsync(ex.Message);
             }
-            Framework.ValidateConfigFile("database.json", Database_Object.DO());
-            Framework.ValidateConfigFile("webapp.json", WebApp_Object.DO());
 
             // Load config files
 
-            Framework.CacheConfigFiles();
+            CodeLogic_Framework.CacheConfigFiles();
 
         }
         public async static void RequestHandler(HttpContext httpContent)
@@ -35,9 +33,20 @@ namespace Media2A.WebApp
             {
                 ConfigModels.WebApp webApp = new ConfigModels.WebApp();
 
-                bool responseFromHandler = Framework.GetConfigValueBool("webapp.json", "SiteProxyEnabled");
+                var SiteProxyEnabled = CodeLogic_Framework.GetConfigValueBool("webapp.json", "SiteProxyEnabled");
 
-                await httpContent.Response.WriteAsync(responseFromHandler.ToString());
+                var SessionTimeout = CodeLogic_Framework.GetConfigValueInt("webapp.json", "SessionTimeout");
+
+                
+
+                // Put debug info in html tag
+                var outputBegin = "<!-- " + Environment.NewLine;
+                var outputContent = "WebApp Debugging:" + Environment.NewLine;
+                outputContent = outputContent + "SiteProxyEnabled: " + SiteProxyEnabled.ToString() + Environment.NewLine;
+                outputContent = outputContent + "SessionTimeout: " + SessionTimeout.ToString() + Environment.NewLine;
+                var outputEnd = "-->";
+
+                await httpContent.Response.WriteAsync(outputBegin + outputContent + outputEnd);
             }
             catch (Exception ex)
             {

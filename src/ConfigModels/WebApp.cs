@@ -14,7 +14,7 @@ namespace Media2A.WebApp.ConfigModels
     }
     public class WebApp_Object
     {
-        public static object DO()
+        public static object GenerateModel()
         {
             var DataObject = new WebApp();
             DataObject.SiteProxyEnabled = false;

@@ -17,7 +17,7 @@ namespace Media2A.WebApp.ConfigModels
     }
     public class Database_Object
     {
-        public static object DO()
+        public static object GenerateModel()
         {
             var DataObject = new Database();
             DataObject.DatabaseHost = "";
