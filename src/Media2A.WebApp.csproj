@@ -11,15 +11,13 @@
 	</ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\CodeLogic.Libs\Common\CL.Web\CL.Web.csproj" />
+    <ProjectReference Include="..\..\CodeLogic.Libs\Communication\CL.Smtp\CL.Smtp.csproj" />
     <ProjectReference Include="..\..\CodeLogic.Libs\Database\CL.MySQL\CL.MySQL.csproj" />
     <ProjectReference Include="..\..\CodeLogic\src\CodeLogic.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DatabaseModels\" />
     <Folder Include="Func\Cms\" />
-    <Folder Include="Func\Handlers\RequestHandler\" />
   </ItemGroup>
 
 </Project>
