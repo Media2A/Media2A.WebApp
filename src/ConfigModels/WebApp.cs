@@ -9,8 +9,11 @@ namespace Media2A.WebApp.ConfigModels
     public class WebApp
     {
         public bool SiteProxyEnabled { get; set; }
+        public bool SiteEnforceHttps { get; set; }
         public int DebugLevel { get; set; }
         public int SessionTimeout { get; set; }
+        public string CrossOriginDomains { get; set; }
+
     }
     public class WebApp_Object
     {
@@ -20,6 +23,7 @@ namespace Media2A.WebApp.ConfigModels
             DataObject.SiteProxyEnabled = false;
             DataObject.DebugLevel = 1;
             DataObject.SessionTimeout = 3600;
+            DataObject.CrossOriginDomains = "*";
 
             return DataObject;
         }

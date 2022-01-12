@@ -11,6 +11,7 @@ namespace Media2A.WebApp
             try
             {
                 WebApp_Funcs.Configuration();
+                CodeLogic_Framework.CacheConfigFiles();
             }
             catch (Exception ex)
             {
@@ -19,7 +20,7 @@ namespace Media2A.WebApp
 
             // Load config files
 
-            CodeLogic_Framework.CacheConfigFiles();
+            
 
         }
 

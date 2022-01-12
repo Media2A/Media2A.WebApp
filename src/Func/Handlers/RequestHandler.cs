@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using CodeLogic;
+using CL.MySQL;
+using System.Data;
+using Microsoft.AspNetCore.Http.Extensions;
 
 namespace Media2A.WebApp
 {
@@ -15,22 +18,26 @@ namespace Media2A.WebApp
 
             try
             {
-                ConfigModels.WebApp webApp = new ConfigModels.WebApp();
 
-                var SiteProxyEnabled = CodeLogic_Framework.GetConfigValueBool("webapp.json", "SiteProxyEnabled");
+                // Http headers check - Access-Control-Allow-Origin, etc...
 
-                var SessionTimeout = CodeLogic_Framework.GetConfigValueInt("webapp.json", "SessionTimeout");
+                WebApp_Funcs.HttpHeadersCheck(httpContent);
+
+                WebApp_Funcs.HttpsEnforce(httpContent);
 
 
+                var MysqltestQuery = MySql_Queries.GetResultByQuery("WebApp_CMS_Templates", "template_content", "");
 
-                // Put debug info in html tag
-                var outputBegin = "<!-- " + Environment.NewLine;
-                var outputContent = "WebApp Debugging:" + Environment.NewLine;
-                outputContent = outputContent + "SiteProxyEnabled: " + SiteProxyEnabled.ToString() + Environment.NewLine;
-                outputContent = outputContent + "SessionTimeout: " + SessionTimeout.ToString() + Environment.NewLine;
-                var outputEnd = "-->";
+                foreach (DataRow dataRow in MysqltestQuery.Rows)
+                {
+                    foreach (var item in dataRow.ItemArray)
+                    {
+                        await httpContent.Response.WriteAsync(item.ToString());
+                    }
+                }
+                await httpContent.Response.WriteAsync("url:" + httpContent.Request.GetEncodedUrl());
 
-                await httpContent.Response.WriteAsync(outputBegin + outputContent + outputEnd);
+                
             }
             catch (Exception ex)
             {
