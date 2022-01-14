@@ -15,6 +15,9 @@ namespace Media2A.WebApp
     // Default parameters for WebApp
     public partial class WebApp_Defaults { }
 
+    // Default MySql tables
+    public partial class WebApp_DatabaseModels { }
+
     // WebApp handlers
     public partial class WebApp_Handlers { }
 

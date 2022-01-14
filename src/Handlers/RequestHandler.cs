@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using CodeLogic;
-using CL.MySQL;
 using System.Data;
-using Microsoft.AspNetCore.Http.Extensions;
+using CL.MySQL;
 
 namespace Media2A.WebApp
 {
@@ -23,25 +22,24 @@ namespace Media2A.WebApp
 
                 WebApp_Funcs.HttpHeadersCheck(httpContent);
 
+                // Enforce https if enabled in config
+
                 WebApp_Funcs.HttpsEnforce(httpContent);
 
+                // TESTING STUFF
 
-                var MysqltestQuery = MySql_Queries.GetResultByQuery("WebApp_CMS_Templates", "template_content", "");
-
-                foreach (DataRow dataRow in MysqltestQuery.Rows)
+                var test = MySql_Queries.GetDataByModelByID(WebApp_DatabaseModels.WebApp_CMS_Pages(), "123");
+                foreach (var item in test)
                 {
-                    foreach (var item in dataRow.ItemArray)
-                    {
-                        await httpContent.Response.WriteAsync(item.ToString());
-                    }
+                    // httpContent.Response.WriteAsync("Key: " + item.Key + " /// Value: " + Convert.ToString(item.Value));
+                    // httpContent.Response.WriteAsync(Environment.NewLine);
                 }
-                await httpContent.Response.WriteAsync("url:" + httpContent.Request.GetEncodedUrl());
 
                 
             }
             catch (Exception ex)
             {
-                httpContent.Response.WriteAsync(ex.ToString());
+                
             }
 
 

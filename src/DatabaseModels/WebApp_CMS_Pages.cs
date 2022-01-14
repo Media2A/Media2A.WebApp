@@ -1,35 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CL.MySQL;
 
-namespace Media2A.WebApp.DatabaseModels
+namespace Media2A.WebApp
 {
-    public class WebApp_CMS_Pages
+    public partial class WebApp_DatabaseModels
     {
-        public Guid page_id { get; set; }
-        public string page_title { get; set; }
-        public string page_description { get; set; }
-        public string page_tags { get; set; }
-        public string page_permission { get; set; }
-        public bool page_published { get; set; }
-        public int page_hits { get; set; }
-        public string page_templateid { get; set; }
-    }
-     public class WebApp_CMS_Pages_Object
-    {
-        public static object GenerateModel()
+        public static MySql_Models.Table WebApp_CMS_Pages()
         {
-            var DataObject = new WebApp_CMS_Pages();
-            DataObject.page_id = Guid.NewGuid();
-            DataObject.page_title = "";
-            DataObject.page_tags = "";
-            DataObject.page_permission = "";
-            DataObject.page_published = false;
-            DataObject.page_hits = 0;
-            DataObject.page_templateid = "";
-            return DataObject;
+            var table = new MySql_Models.Table();
+
+            table.TableName = "WebApp_CMS_Pages";
+
+            table.Column = new MySql_Models.Column[] {
+                new MySql_Models.Column(true, false,"page_id", MySql_Models.DataTypes.INT, 10, false, "", ""),
+                new MySql_Models.Column(false, false,"page_title", MySql_Models.DataTypes.VARCHAR, 10, false, "", ""),
+                new MySql_Models.Column(false, false,"page_description", MySql_Models.DataTypes.VARCHAR, 10, false, "", ""),
+                new MySql_Models.Column(false, false,"page_creationdate", MySql_Models.DataTypes.DATETIME, 10, false, "", ""),
+                new MySql_Models.Column(false, false,"page_modifieddate", MySql_Models.DataTypes.DATETIME, 10, false, "", ""),
+                new MySql_Models.Column(false, false,"page_author", MySql_Models.DataTypes.VARCHAR, 10, false, "", ""),
+                new MySql_Models.Column(false, false,"page_tags", MySql_Models.DataTypes.VARCHAR, 10, false, "", ""),
+                new MySql_Models.Column(false, false,"page_permission", MySql_Models.DataTypes.VARCHAR, 10, false, "", ""),
+                new MySql_Models.Column(false, false,"page_published", MySql_Models.DataTypes.SMALLINT, 10, false, "", ""),
+                new MySql_Models.Column(false, false,"page_hits", MySql_Models.DataTypes.INT, 10, false, "", ""),
+                new MySql_Models.Column(false, false,"theme_id", MySql_Models.DataTypes.VARCHAR, 10, false, "", ""),
+                new MySql_Models.Column(false, false,"layout_id", MySql_Models.DataTypes.VARCHAR, 10, false, "", ""),
+                new MySql_Models.Column(false, false,"template_id", MySql_Models.DataTypes.VARCHAR, 10, false, "", ""),
+            };
+
+            return table;
         }
     }
 }

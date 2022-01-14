@@ -1,28 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CL.MySQL;
 
-namespace Media2A.WebApp.DatabaseModels
+namespace Media2A.WebApp
 {
-    public class Database
+    public partial class WebApp_DatabaseModels
     {
-        public string DatabaseHost { get; set; }
-        public string DatabaseUsername { get; set; }
-        public string DatabasePassword { get; set; }
-        public string DatabaseSchema { get; set; }
-    }
-     public class Database_Object
-    {
-        public static object GenerateModel()
+        public static MySql_Models.Table WebApp_CMS_Templates()
         {
-            var DataObject = new Database();
-            DataObject.DatabaseHost = "";
-            DataObject.DatabaseUsername = "";
-            DataObject.DatabasePassword = "";
-            DataObject.DatabaseSchema = "";
-            return DataObject;
+            var table = new MySql_Models.Table();
+
+            table.TableName = "WebApp_CMS_Templates";
+
+            table.Column = new MySql_Models.Column[] {
+                new MySql_Models.Column(true, false,"template_id", MySql_Models.DataTypes.INT, 0, false, "", ""),
+                new MySql_Models.Column(false, false,"template_name", MySql_Models.DataTypes.VARCHAR, 10, false, "", ""),
+                new MySql_Models.Column(false, false,"template_desc", MySql_Models.DataTypes.VARCHAR, 10, false, "", ""),
+                new MySql_Models.Column(false, false,"template_content", MySql_Models.DataTypes.BLOB, 0, false, "", ""),
+                new MySql_Models.Column(false, false,"theme_id", MySql_Models.DataTypes.BLOB, 0, false, "", "")
+
+            };
+
+            return table;
         }
     }
 }
