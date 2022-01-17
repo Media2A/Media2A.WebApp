@@ -1,21 +1,21 @@
-﻿using Microsoft.AspNetCore.Http;
-using CodeLogic;
-using System.Data;
-using CL.MySQL;
+﻿using CL.MySQL;
+using System.Reflection;
+using Microsoft.AspNetCore.Http;
 
 namespace Media2A.WebApp
 {
     public partial class WebApp_Handlers
     {
-        public static void InstallHandler()
+        public static void InstallHandler(HttpContext httpContent)
         {
-            // Create tables
-            MySql_Queries.ExecuteNonQuery(MySql_Queries.CreateNewTableFromModel(WebApp_DatabaseModels.WebApp_CMS_Widgets()));
-            MySql_Queries.ExecuteNonQuery(MySql_Queries.CreateNewTableFromModel(WebApp_DatabaseModels.WebApp_CMS_Templates()));
-            MySql_Queries.ExecuteNonQuery(MySql_Queries.CreateNewTableFromModel(WebApp_DatabaseModels.WebApp_CMS_Themes()));
-            MySql_Queries.ExecuteNonQuery(MySql_Queries.CreateNewTableFromModel(WebApp_DatabaseModels.WebApp_CMS_Layouts()));
-            MySql_Queries.ExecuteNonQuery(MySql_Queries.CreateNewTableFromModel(WebApp_DatabaseModels.WebApp_CMS_Pages()));
+            //WebApp_DatabaseModels.WebApp_CMS_Pages webApp_CMS_Pages = new WebApp_DatabaseModels.WebApp_CMS_Pages();
+            //httpContent.Response.WriteAsync( MySql_Queries.CreateTableFromModel(webApp_CMS_Pages));
 
+            var outdd = new WebApp_DatabaseModels.WebApp_CMS_Pages().ReturnTable();
+
+
+
+            httpContent.Response.WriteAsync(MySql_Queries.CreateNewTableFromModel(outdd));
 
         }
     }

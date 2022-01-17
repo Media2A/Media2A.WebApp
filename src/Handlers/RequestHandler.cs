@@ -28,14 +28,18 @@ namespace Media2A.WebApp
 
                 // TESTING STUFF
 
-                var test = MySql_Queries.GetDataByModelByID(WebApp_DatabaseModels.WebApp_CMS_Pages(), "123");
-                foreach (var item in test)
-                {
-                    // httpContent.Response.WriteAsync("Key: " + item.Key + " /// Value: " + Convert.ToString(item.Value));
-                    // httpContent.Response.WriteAsync(Environment.NewLine);
-                }
+                //var test = MySql_Queries.GetDataByModelByID(new WebApp_DatabaseModels.WebApp_CMS_Pages().GetTable(), new WebApp_DatabaseModels.WebApp_CMS_Pages().GetColumns(), "123");
+                //foreach (var item in test)
+                //{
+                //    var itemValue = item.Value;
+                //    Type actualType = itemValue.GetType();
+                //    httpContent.Response.WriteAsync("Key: " + item.Key + " /// Type: " + actualType + " /// Value: " + itemValue);
+                //    httpContent.Response.WriteAsync(Environment.NewLine);
+                //}
+                //MySql_Tools.GetRecordValue(test, "");
 
-                
+
+
             }
             catch (Exception ex)
             {

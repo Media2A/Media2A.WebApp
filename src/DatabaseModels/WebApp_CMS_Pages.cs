@@ -4,29 +4,42 @@ namespace Media2A.WebApp
 {
     public partial class WebApp_DatabaseModels
     {
-        public static MySql_Models.Table WebApp_CMS_Pages()
+        public class WebApp_CMS_Pages
         {
-            var table = new MySql_Models.Table();
+            // Columns
+            public string page_id = "page_id";
+            public string page_title = "page_title";
+            public string page_description = "page_description";
+            public string page_creationdate = "page_creationdate";
+            public string page_modifieddate = "page_modifieddate";
+            public string page_author = "page_author";
+            public string page_tags = "page_tags";
+            public string page_permission = "page_permission";
+            public string page_published = "page_published";
+            public string page_hits = "page_hits";
+            public string page_template = "page_template";
 
-            table.TableName = "WebApp_CMS_Pages";
+            public MySql_Models.Table ReturnTable()
+            {
+                MySql_Models.Table table = new MySql_Models.Table();
+                table.TableName = "WebApp_CMS_Pages";
+                table.TableEngine = MySql_Models.TableEngine.INNODB;
+                table.Columns = new MySql_Models.Column[] {
+                 new MySql_Models.Column() { Name=page_id, Datatype = MySql_Models.DataTypes.CHAR, Size = 35, Primary = true },
+                 new MySql_Models.Column() { Name = page_title, Datatype = MySql_Models.DataTypes.CHAR, Size = 35 },
+                 new MySql_Models.Column() { Name = page_description, Datatype = MySql_Models.DataTypes.BLOB},
+                 new MySql_Models.Column() { Name = page_creationdate, Datatype = MySql_Models.DataTypes.BLOB },
+                 new MySql_Models.Column() { Name = page_modifieddate, Datatype = MySql_Models.DataTypes.BLOB },
+                 new MySql_Models.Column() { Name = page_author, Datatype = MySql_Models.DataTypes.BLOB },
+                 new MySql_Models.Column() { Name = page_tags, Datatype = MySql_Models.DataTypes.BLOB },
+                 new MySql_Models.Column() { Name = page_permission, Datatype = MySql_Models.DataTypes.BLOB },
+                 new MySql_Models.Column() { Name = page_published, Datatype = MySql_Models.DataTypes.BLOB },
+                 new MySql_Models.Column() { Name = page_hits, Datatype = MySql_Models.DataTypes.BLOB },
+                 new MySql_Models.Column() { Name = page_template, Datatype = MySql_Models.DataTypes.BLOB }
+                };
 
-            table.Column = new MySql_Models.Column[] {
-                new MySql_Models.Column(true, false,"page_id", MySql_Models.DataTypes.INT, 10, false, "", ""),
-                new MySql_Models.Column(false, false,"page_title", MySql_Models.DataTypes.VARCHAR, 10, false, "", ""),
-                new MySql_Models.Column(false, false,"page_description", MySql_Models.DataTypes.VARCHAR, 10, false, "", ""),
-                new MySql_Models.Column(false, false,"page_creationdate", MySql_Models.DataTypes.DATETIME, 10, false, "", ""),
-                new MySql_Models.Column(false, false,"page_modifieddate", MySql_Models.DataTypes.DATETIME, 10, false, "", ""),
-                new MySql_Models.Column(false, false,"page_author", MySql_Models.DataTypes.VARCHAR, 10, false, "", ""),
-                new MySql_Models.Column(false, false,"page_tags", MySql_Models.DataTypes.VARCHAR, 10, false, "", ""),
-                new MySql_Models.Column(false, false,"page_permission", MySql_Models.DataTypes.VARCHAR, 10, false, "", ""),
-                new MySql_Models.Column(false, false,"page_published", MySql_Models.DataTypes.SMALLINT, 10, false, "", ""),
-                new MySql_Models.Column(false, false,"page_hits", MySql_Models.DataTypes.INT, 10, false, "", ""),
-                new MySql_Models.Column(false, false,"theme_id", MySql_Models.DataTypes.VARCHAR, 10, false, "", ""),
-                new MySql_Models.Column(false, false,"layout_id", MySql_Models.DataTypes.VARCHAR, 10, false, "", ""),
-                new MySql_Models.Column(false, false,"template_id", MySql_Models.DataTypes.VARCHAR, 10, false, "", ""),
-            };
-
-            return table;
+                return table;
+            }
         }
     }
 }

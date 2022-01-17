@@ -20,7 +20,7 @@ namespace Media2A.WebApp
 
             // Load config files
 
-            
+            InstallHandler(httpContent);
 
         }
 

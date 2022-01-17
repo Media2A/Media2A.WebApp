@@ -16,4 +16,8 @@
     <ProjectReference Include="..\..\CodeLogic\src\CodeLogic.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DatabaseModels\Interfaces\" />
+  </ItemGroup>
+
 </Project>
