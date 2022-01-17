@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DatabaseModels\Interfaces\" />
+    <Folder Include="WebModels\" />
   </ItemGroup>
 
 </Project>

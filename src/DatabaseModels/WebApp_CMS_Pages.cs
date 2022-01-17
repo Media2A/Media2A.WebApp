@@ -25,17 +25,17 @@ namespace Media2A.WebApp
                 table.TableName = "WebApp_CMS_Pages";
                 table.TableEngine = MySql_Models.TableEngine.INNODB;
                 table.Columns = new MySql_Models.Column[] {
-                 new MySql_Models.Column() { Name=page_id, Datatype = MySql_Models.DataTypes.CHAR, Size = 35, Primary = true },
-                 new MySql_Models.Column() { Name = page_title, Datatype = MySql_Models.DataTypes.CHAR, Size = 35 },
-                 new MySql_Models.Column() { Name = page_description, Datatype = MySql_Models.DataTypes.BLOB},
-                 new MySql_Models.Column() { Name = page_creationdate, Datatype = MySql_Models.DataTypes.BLOB },
-                 new MySql_Models.Column() { Name = page_modifieddate, Datatype = MySql_Models.DataTypes.BLOB },
-                 new MySql_Models.Column() { Name = page_author, Datatype = MySql_Models.DataTypes.BLOB },
-                 new MySql_Models.Column() { Name = page_tags, Datatype = MySql_Models.DataTypes.BLOB },
-                 new MySql_Models.Column() { Name = page_permission, Datatype = MySql_Models.DataTypes.BLOB },
-                 new MySql_Models.Column() { Name = page_published, Datatype = MySql_Models.DataTypes.BLOB },
-                 new MySql_Models.Column() { Name = page_hits, Datatype = MySql_Models.DataTypes.BLOB },
-                 new MySql_Models.Column() { Name = page_template, Datatype = MySql_Models.DataTypes.BLOB }
+                 new MySql_Models.Column() { Name=page_id, Datatype = MySql_Models.DataTypes.VARCHAR, Size = 35, Primary = true },
+                 new MySql_Models.Column() { Name = page_title, Datatype = MySql_Models.DataTypes.VARCHAR, Size = 35 },
+                 new MySql_Models.Column() { Name = page_description, Datatype = MySql_Models.DataTypes.VARCHAR, Size = 35 },
+                 new MySql_Models.Column() { Name = page_creationdate, Datatype = MySql_Models.DataTypes.DATETIME },
+                 new MySql_Models.Column() { Name = page_modifieddate, Datatype = MySql_Models.DataTypes.DATETIME },
+                 new MySql_Models.Column() { Name = page_author, Datatype = MySql_Models.DataTypes.VARCHAR, Size = 35 },
+                 new MySql_Models.Column() { Name = page_tags, Datatype = MySql_Models.DataTypes.VARCHAR, Size = 35 },
+                 new MySql_Models.Column() { Name = page_permission, Datatype = MySql_Models.DataTypes.VARCHAR, Size = 35 },
+                 new MySql_Models.Column() { Name = page_published, Datatype = MySql_Models.DataTypes.VARCHAR, Size = 35 },
+                 new MySql_Models.Column() { Name = page_hits, Datatype = MySql_Models.DataTypes.VARCHAR, Size = 35 },
+                 new MySql_Models.Column() { Name = page_template, Datatype = MySql_Models.DataTypes.VARCHAR, Size = 35 }
                 };
 
                 return table;
