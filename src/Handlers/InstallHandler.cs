@@ -11,11 +11,11 @@ namespace Media2A.WebApp
             //WebApp_DatabaseModels.WebApp_CMS_Pages webApp_CMS_Pages = new WebApp_DatabaseModels.WebApp_CMS_Pages();
             //httpContent.Response.WriteAsync( MySql_Queries.CreateTableFromModel(webApp_CMS_Pages));
 
-            var outdd = new WebApp_DatabaseModels.WebApp_CMS_Pages().ReturnTable();
+            var WebApp_CMS_Pages = new WebApp_DatabaseModels.WebApp_CMS_Pages().ReturnTable();
+            var WebApp_CMS_Routing = new WebApp_DatabaseModels.WebApp_CMS_Routing().ReturnTable();
 
-
-
-            httpContent.Response.WriteAsync(MySql_Queries.CreateNewTableFromModel(outdd));
+            MySql_Queries.CreateNewTableFromModel(WebApp_CMS_Pages);
+            MySql_Queries.CreateNewTableFromModel(WebApp_CMS_Routing);
 
         }
     }
