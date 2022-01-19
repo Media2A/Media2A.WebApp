@@ -4,7 +4,7 @@ namespace Media2A.WebApp
 {
     public partial class WebApp_DatabaseModels
     {
-        public class WebApp_CMS_Routing
+        public class WebApp_Extensions
         {
             // Columns
             public string route_id = "route_id";
@@ -16,7 +16,7 @@ namespace Media2A.WebApp
             public MySql_Models.Table ReturnTable()
             {
                 MySql_Models.Table table = new MySql_Models.Table();
-                table.TableName = "WebApp_CMS_Routing";
+                table.TableName = "WebApp_Extensions";
                 table.TableEngine = MySql_Models.TableEngine.INNODB;
                 table.Columns = new MySql_Models.Column[] {
                  new MySql_Models.Column() { Name = route_id, Datatype = MySql_Models.DataTypes.INT, AutoIncrement = true, Primary = true},

@@ -5,7 +5,7 @@ namespace Media2A.WebApp
 {
     public partial class WebApp_Handlers
     {
-        public static void InstallHandler(HttpContext httpContent)
+        public static void ExtensionHandler(string moduleName, HttpContext httpContent)
         {
             var WebApp_CMS_Pages = new WebApp_DatabaseModels.WebApp_CMS_Pages().ReturnTable();
             var WebApp_CMS_Routing = new WebApp_DatabaseModels.WebApp_CMS_Routing().ReturnTable();

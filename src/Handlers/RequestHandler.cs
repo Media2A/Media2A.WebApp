@@ -1,13 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
-using CodeLogic;
-using System.Data;
-using CL.MySQL;
+﻿using CodeLogic;
+using Microsoft.AspNetCore.Http;
 
 namespace Media2A.WebApp
 {
     public partial class WebApp_Handlers
     {
-        public async static void RequestHandler(HttpContext httpContent)
+        public static async void RequestHandler(HttpContext httpContent)
         {
             try
             {
@@ -22,24 +20,45 @@ namespace Media2A.WebApp
                 WebApp_Funcs.HttpsEnforce(httpContent);
 
                 // ----------- PROCESS REQUEST ------------
-                
-                // Lookup routing informations from database
-                var routeInfo = WebApp_Funcs.Routing(httpContent);
+
+                // ROUTING
+
+                var routeInfo = WebApp_Funcs.Routing(httpContent); // retrieve routing info from database
+
                 var routingDataModel = new WebApp_DatabaseModels.WebApp_CMS_Routing();
 
-                routeInfo.GetValueOrDefault(routingDataModel.route_id);
+                // Process route type
 
-                var pathLookup = CodeLogic_Funcs.SplitUrlString(CodeLogic_Funcs.GetPath(httpContent), 1);
-                httpContent.Response.WriteAsync(pathLookup);
+                var routeType = Enum.Parse<WebApp_AppModels.Cms.RoutingTypes>(routeInfo.GetValueOrDefault(routingDataModel.route_type).ToString());
+
+                switch (routeType)
+                {
+                    case WebApp_AppModels.Cms.RoutingTypes.PAGE:
+                        httpContent.Response.WriteAsync("PAGE");
+                        break;
+
+                    case WebApp_AppModels.Cms.RoutingTypes.MODULE:
+                        httpContent.Response.WriteAsync("MODULE");
+                        break;
+
+                    case WebApp_AppModels.Cms.RoutingTypes.REDIRECT:
+                        WebApp_Funcs.Redirect(httpContent);
+
+                        break;
+
+                    case WebApp_AppModels.Cms.RoutingTypes.EXTERNAL:
+                        httpContent.Response.WriteAsync("EXTERNAL");
+                        break;
+
+                    default:
+                        httpContent.Response.WriteAsync("DEFAULT");
+                        break;
+                }
 
             }
             catch (Exception ex)
             {
-                
             }
-
-
-
         }
     }
 }
