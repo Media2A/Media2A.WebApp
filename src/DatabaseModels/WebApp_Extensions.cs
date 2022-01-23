@@ -7,11 +7,10 @@ namespace Media2A.WebApp
         public class WebApp_Extensions
         {
             // Columns
-            public string route_id = "route_id";
-            public string route_url = "route_url";
-            public string route_type = "route_type";
-            public string route_counter = "route_counter";
-            public string route_permission = "route_permission";
+            public string extension_id = "extension_id";
+            public string extension_name = "extension_name";
+            public string extension_desc = "extension_desc";
+            public string extension_creator = "extension_creator";
 
             public MySql_Models.Table ReturnTable()
             {
@@ -19,11 +18,10 @@ namespace Media2A.WebApp
                 table.TableName = "WebApp_Extensions";
                 table.TableEngine = MySql_Models.TableEngine.INNODB;
                 table.Columns = new MySql_Models.Column[] {
-                 new MySql_Models.Column() { Name = route_id, Datatype = MySql_Models.DataTypes.INT, AutoIncrement = true, Primary = true},
-                 new MySql_Models.Column() { Name = route_url, Datatype = MySql_Models.DataTypes.VARCHAR, Size = 255, Index = true  },
-                 new MySql_Models.Column() { Name = route_type, Datatype = MySql_Models.DataTypes.VARCHAR, Size = 15 },
-                 new MySql_Models.Column() { Name = route_counter, Datatype = MySql_Models.DataTypes.INT },
-                 new MySql_Models.Column() { Name = route_permission, Datatype = MySql_Models.DataTypes.VARCHAR, Size = 255 },
+                 new MySql_Models.Column() { Name = extension_id, Datatype = MySql_Models.DataTypes.VARCHAR, Size = 15,  Primary = true},
+                 new MySql_Models.Column() { Name = extension_name, Datatype = MySql_Models.DataTypes.VARCHAR, Size = 35, Index = true  },
+                 new MySql_Models.Column() { Name = extension_desc, Datatype = MySql_Models.DataTypes.VARCHAR, Size = 255 },
+                 new MySql_Models.Column() { Name = extension_creator, Datatype = MySql_Models.DataTypes.VARCHAR, Size = 35 },
                 };
 
                 return table;

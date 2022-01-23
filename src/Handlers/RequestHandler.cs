@@ -38,7 +38,12 @@ namespace Media2A.WebApp
                         break;
 
                     case WebApp_AppModels.Cms.RoutingTypes.MODULE:
-                        httpContent.Response.WriteAsync("MODULE");
+
+                        var file = AppDomain.CurrentDomain.BaseDirectory + "WebApp.Extension.Tddesting";
+
+                        var test2 = CodeLogic_Funcs.GetObjectInvokeDll("WebApp.Extension.Testing.dll", "WebApp.Extension.Testing.Extension", "Test");
+
+                        httpContent.Response.WriteAsync(test2.ToString());
                         break;
 
                     case WebApp_AppModels.Cms.RoutingTypes.REDIRECT:
@@ -48,6 +53,10 @@ namespace Media2A.WebApp
 
                     case WebApp_AppModels.Cms.RoutingTypes.EXTERNAL:
                         httpContent.Response.WriteAsync("EXTERNAL");
+
+                        var test = CodeLogic_Funcs.GetStringInvokeDll("WebApp.Extension.Testing", "Extension", "Test");
+
+                        httpContent.Response.WriteAsync(test);
                         break;
 
                     default:
