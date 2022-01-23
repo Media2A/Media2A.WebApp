@@ -5,7 +5,8 @@ namespace Media2A.WebApp
 {
     public partial class WebApp_Handlers
     {
-        public static void InstallHandler(HttpContext httpContent)
+
+        private static void CreateTables()
         {
             var WebApp_CMS_Pages = new WebApp_DatabaseModels.WebApp_CMS_Pages().ReturnTable();
             var WebApp_CMS_Routing = new WebApp_DatabaseModels.WebApp_CMS_Routing().ReturnTable();
@@ -20,5 +21,10 @@ namespace Media2A.WebApp
             MySql_Queries.CreateNewTableFromModel(WebApp_Modules);
 
         }
+        public static void InstallHandler(HttpContext httpContent)
+        {
+            CreateTables();
+        }
+
     }
 }
