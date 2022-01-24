@@ -9,7 +9,7 @@ namespace Media2A.WebApp
             // Columns
             public string layout_id = "widget_id";
 
-            public string layout_content = "layout_content";
+            public string layout_content = "moduleee";
             public string themeid = "themeid";
 
             public MySql_Models.Table ReturnTable()

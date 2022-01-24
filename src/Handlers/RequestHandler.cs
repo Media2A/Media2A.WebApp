@@ -34,7 +34,7 @@ namespace Media2A.WebApp
                 switch (routeType)
                 {
                     case WebApp_AppModels.Cms.RoutingTypes.PAGE:
-                        httpContent.Response.WriteAsync("PAGE");
+                        WebApp_Funcs.Cms.GeneratePageByID("df94473f-7cbf-11ec-8ac7-0200004a9e89", httpContent);
                         break;
 
                     case WebApp_AppModels.Cms.RoutingTypes.MODULE:

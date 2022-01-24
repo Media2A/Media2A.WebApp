@@ -4,7 +4,7 @@ namespace Media2A.WebApp
 {
     public partial class WebApp_DatabaseModels
     {
-        public class WebApp_CMS_Layouts
+        public class WebApp_CMS_Menus
         {
             // Columns
             public string layout_id = "layout_id";
