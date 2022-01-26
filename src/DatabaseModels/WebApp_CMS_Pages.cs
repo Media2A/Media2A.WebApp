@@ -19,8 +19,8 @@ namespace Media2A.WebApp
             public string page_permission = "page_permission";
             public string page_published = "page_published";
             public string page_hits = "page_hits";
-            public string template_id = "template_id";
             public string theme_id = "theme_id";
+            public string menu_id = "menu_id";
 
             public MySql_Models.Table ReturnTable()
             {
@@ -42,8 +42,8 @@ namespace Media2A.WebApp
                  new MySql_Models.Column() { Name = page_permission, Datatype = MySql_Models.DataTypes.VARCHAR, Size = 255 },
                  new MySql_Models.Column() { Name = page_published, Datatype = MySql_Models.DataTypes.TINYINT },
                  new MySql_Models.Column() { Name = page_hits, Datatype = MySql_Models.DataTypes.INT },
-                 new MySql_Models.Column() { Name = template_id, Datatype = MySql_Models.DataTypes.VARCHAR, Size = 50 },
-                 new MySql_Models.Column() { Name = theme_id, Datatype = MySql_Models.DataTypes.VARCHAR, Size = 50 }
+                 new MySql_Models.Column() { Name = theme_id, Datatype = MySql_Models.DataTypes.VARCHAR, Size = 50 },
+                 new MySql_Models.Column() { Name = menu_id, Datatype = MySql_Models.DataTypes.VARCHAR, Size = 50 },
 
                 };
 

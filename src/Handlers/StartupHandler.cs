@@ -7,16 +7,8 @@ namespace Media2A.WebApp
     {
         public static void StartupHandler(HttpContext httpContent)
         {
-            // Check default config files and generate them if none is found.
-            try
-            {
-                WebApp_Funcs.Configuration();
-                CodeLogic_Framework.CacheConfigFiles();
-            }
-            catch (Exception ex)
-            {
-                httpContent.Response.WriteAsync(ex.Message);
-            }
+            WebApp_Funcs.Configuration();
+            CodeLogic_Framework.CacheConfigFiles();
 
             // Load config files
 

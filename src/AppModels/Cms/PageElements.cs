@@ -10,13 +10,9 @@ namespace Media2A.WebApp
     {
         public partial class Cms
         {
-            public enum HttpErrorCodes
+            public enum PageElements
             {
-                _400,
-                _401,
-                _403,
-                _404,
-                _500,
+                PAGE_TITLE,
             }
         }
     }

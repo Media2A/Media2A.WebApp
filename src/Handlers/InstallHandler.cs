@@ -22,10 +22,15 @@ namespace Media2A.WebApp
             var WebApp_CMS_Redirect = new WebApp_DatabaseModels.WebApp_CMS_Redirect().ReturnTable();
             MySql_Queries.CreateNewTableFromModel(WebApp_CMS_Redirect);
 
-            var WebApp_CMS_Themes = new WebApp_DatabaseModels.WebApp_Modules().ReturnTable();
-            MySql_Queries.CreateNewTableFromModel(WebApp_CMS_Themes);
+            var WebApp_CMS_Menus = new WebApp_DatabaseModels.WebApp_CMS_Menus().ReturnTable();
+            MySql_Queries.CreateNewTableFromModel(WebApp_CMS_Menus);
+
+            var WebApp_CMS_MenusItems = new WebApp_DatabaseModels.WebApp_CMS_MenusItems().ReturnTable();
+            MySql_Queries.CreateNewTableFromModel(WebApp_CMS_MenusItems);
 
             // CMS
+            var WebApp_CMS_Themes = new WebApp_DatabaseModels.WebApp_CMS_Themes().ReturnTable();
+            MySql_Queries.CreateNewTableFromModel(WebApp_CMS_Themes);
 
             var WebApp_CMS_Pages = new WebApp_DatabaseModels.WebApp_CMS_Pages().ReturnTable();
             MySql_Queries.CreateNewTableFromModel(WebApp_CMS_Pages);
@@ -33,13 +38,9 @@ namespace Media2A.WebApp
             var WebApp_CMS_Layouts = new WebApp_DatabaseModels.WebApp_CMS_Layouts().ReturnTable();
             MySql_Queries.CreateNewTableFromModel(WebApp_CMS_Layouts);
 
-
-
-
-
-
-
-
+            var WebApp_CMS_Templates = new WebApp_DatabaseModels.WebApp_CMS_Templates().ReturnTable();
+            MySql_Queries.CreateNewTableFromModel(WebApp_CMS_Templates);
+            
 
         }
         public static void InstallHandler(HttpContext httpContent)

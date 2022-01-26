@@ -5,7 +5,7 @@ namespace Media2A.WebApp
 {
     public partial class WebApp_Handlers
     {
-        public static async void RequestHandler(HttpContext httpContent)
+        public static void RequestHandler(HttpContext httpContent)
         {
             try
             {
@@ -29,15 +29,16 @@ namespace Media2A.WebApp
 
                 // Process route type
 
-                var routeType = Enum.Parse<WebApp_AppModels.Cms.RoutingTypes>(routeInfo.GetValueOrDefault(routingDataModel.route_type).ToString());
+                var routeType = Enum.Parse<WebApp_AppModels.RequestHandler.RoutingTypes>(routeInfo.GetValueOrDefault(routingDataModel.route_type).ToString());
+                var routeParm = routeInfo.GetValueOrDefault(routingDataModel.route_parameters).ToString();
 
                 switch (routeType)
                 {
-                    case WebApp_AppModels.Cms.RoutingTypes.PAGE:
-                        WebApp_Funcs.Cms.GeneratePageByID("df94473f-7cbf-11ec-8ac7-0200004a9e89", httpContent);
+                    case WebApp_AppModels.RequestHandler.RoutingTypes.PAGE:
+                        httpContent.Response.WriteAsync(WebApp_Funcs.Cms.GeneratePageByID(routeParm, httpContent));
                         break;
 
-                    case WebApp_AppModels.Cms.RoutingTypes.MODULE:
+                    case WebApp_AppModels.RequestHandler.RoutingTypes.MODULE:
 
                         var file = AppDomain.CurrentDomain.BaseDirectory + "WebApp.Extension.Tddesting";
 
@@ -46,17 +47,20 @@ namespace Media2A.WebApp
                         httpContent.Response.WriteAsync(test2.ToString());
                         break;
 
-                    case WebApp_AppModels.Cms.RoutingTypes.REDIRECT:
+                    case WebApp_AppModels.RequestHandler.RoutingTypes.REDIRECT:
                         WebApp_Funcs.Redirect(httpContent);
 
                         break;
 
-                    case WebApp_AppModels.Cms.RoutingTypes.EXTERNAL:
+                    case WebApp_AppModels.RequestHandler.RoutingTypes.EXTERNAL:
                         httpContent.Response.WriteAsync("EXTERNAL");
 
-                        var test = CodeLogic_Funcs.GetStringInvokeDll("WebApp.Extension.Testing", "Extension", "Test");
+                        var menuTest = WebApp_Funcs.Cms.GenerateMenuByID("fraghunt");
+                        httpContent.Response.WriteAsync("TEST MENU: " + menuTest);
 
-                        httpContent.Response.WriteAsync(test);
+                        // var test = CodeLogic_Funcs.GetStringInvokeDll("WebApp.Extension.Testing", "Extension", "Test");
+
+                        //httpContent.Response.WriteAsync(test);
                         break;
 
                     default:
@@ -67,6 +71,7 @@ namespace Media2A.WebApp
             }
             catch (Exception ex)
             {
+                httpContent.Response.WriteAsync(ex.ToString());
             }
         }
     }
