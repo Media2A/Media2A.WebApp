@@ -19,6 +19,10 @@ namespace Media2A.WebApp
 
                 WebApp_Funcs.HttpsEnforce(httpContent);
 
+                // SESSION HANDLING
+
+                WebApp_Funcs.UpdateSession(httpContent);
+
                 // ----------- PROCESS REQUEST ------------
 
                 // ROUTING

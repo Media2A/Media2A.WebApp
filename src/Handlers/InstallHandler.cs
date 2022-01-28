@@ -11,36 +11,39 @@ namespace Media2A.WebApp
             // WebApp
 
             var WebApp_Extensions = new WebApp_DatabaseModels.WebApp_Extensions().ReturnTable();
-            MySql_Queries.CreateNewTableFromModel(WebApp_Extensions);
+            MySql_Queries.DataModel.CreateNewTableFromModel(WebApp_Extensions);
 
             var WebApp_Modules = new WebApp_DatabaseModels.WebApp_Modules().ReturnTable();
-            MySql_Queries.CreateNewTableFromModel(WebApp_Modules);
+            MySql_Queries.DataModel.CreateNewTableFromModel(WebApp_Modules);
 
             var WebApp_CMS_Routing = new WebApp_DatabaseModels.WebApp_CMS_Routing().ReturnTable();
-            MySql_Queries.CreateNewTableFromModel(WebApp_CMS_Routing);
+            MySql_Queries.DataModel.CreateNewTableFromModel(WebApp_CMS_Routing);
 
             var WebApp_CMS_Redirect = new WebApp_DatabaseModels.WebApp_CMS_Redirect().ReturnTable();
-            MySql_Queries.CreateNewTableFromModel(WebApp_CMS_Redirect);
+            MySql_Queries.DataModel.CreateNewTableFromModel(WebApp_CMS_Redirect);
 
             var WebApp_CMS_Menus = new WebApp_DatabaseModels.WebApp_CMS_Menus().ReturnTable();
-            MySql_Queries.CreateNewTableFromModel(WebApp_CMS_Menus);
+            MySql_Queries.DataModel.CreateNewTableFromModel(WebApp_CMS_Menus);
 
             var WebApp_CMS_MenusItems = new WebApp_DatabaseModels.WebApp_CMS_MenusItems().ReturnTable();
-            MySql_Queries.CreateNewTableFromModel(WebApp_CMS_MenusItems);
+            MySql_Queries.DataModel.CreateNewTableFromModel(WebApp_CMS_MenusItems);
 
             // CMS
             var WebApp_CMS_Themes = new WebApp_DatabaseModels.WebApp_CMS_Themes().ReturnTable();
-            MySql_Queries.CreateNewTableFromModel(WebApp_CMS_Themes);
+            MySql_Queries.DataModel.CreateNewTableFromModel(WebApp_CMS_Themes);
 
             var WebApp_CMS_Pages = new WebApp_DatabaseModels.WebApp_CMS_Pages().ReturnTable();
-            MySql_Queries.CreateNewTableFromModel(WebApp_CMS_Pages);
+            MySql_Queries.DataModel.CreateNewTableFromModel(WebApp_CMS_Pages);
 
             var WebApp_CMS_Layouts = new WebApp_DatabaseModels.WebApp_CMS_Layouts().ReturnTable();
-            MySql_Queries.CreateNewTableFromModel(WebApp_CMS_Layouts);
+            MySql_Queries.DataModel.CreateNewTableFromModel(WebApp_CMS_Layouts);
 
             var WebApp_CMS_Templates = new WebApp_DatabaseModels.WebApp_CMS_Templates().ReturnTable();
-            MySql_Queries.CreateNewTableFromModel(WebApp_CMS_Templates);
-            
+            MySql_Queries.DataModel.CreateNewTableFromModel(WebApp_CMS_Templates);
+
+            var WebApp_Sessions = new WebApp_DatabaseModels.WebApp_Sessions().ReturnTable();
+            MySql_Queries.DataModel.CreateNewTableFromModel(WebApp_Sessions);
+
 
         }
         public static void InstallHandler(HttpContext httpContent)

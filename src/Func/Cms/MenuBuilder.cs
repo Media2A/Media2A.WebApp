@@ -23,11 +23,11 @@ namespace Media2A.WebApp
                 // Menu Database Model and data
 
                 var menuModel = new WebApp_DatabaseModels.WebApp_CMS_Menus();
-                var menuData = CL.MySQL.MySql_Queries.GetDataByModelByID(menuModel.ReturnTable(), menuModel.menu_name, menuName);
+                var menuData = CL.MySQL.MySql_Queries.DataModel.GetDataByModelByID(menuModel.ReturnTable(), menuModel.menu_name, menuName);
 
                 // Menu items
 
-                var menuItemsData = CL.MySQL.MySql_Queries.GetAllDataByModelByID(menuModel.ReturnTable(), menuModel.menu_id, menuName);
+                var menuItemsData = CL.MySQL.MySql_Queries.DataModel.GetAllDataByModelByID(menuModel.ReturnTable(), menuModel.menu_id, menuName);
 
                 menuModel.menu_id = MySql_Tools.GetRecordValue(menuData, menuModel.menu_id);
                 menuModel.menu_name = MySql_Tools.GetRecordValue(menuData, menuModel.menu_name);

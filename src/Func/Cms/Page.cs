@@ -21,7 +21,7 @@ namespace Media2A.WebApp
                 // ----------   +Get page details from page id
                 var pageModel = new WebApp_DatabaseModels.WebApp_CMS_Pages();
 
-                var pageData = CL.MySQL.MySql_Queries.GetDataByModelByID(pageModel.ReturnTable(), pageModel.page_id, pageID);
+                var pageData = CL.MySQL.MySql_Queries.DataModel.GetDataByModelByID(pageModel.ReturnTable(), pageModel.page_id, pageID);
 
                 pageModel.page_title = MySql_Tools.GetRecordValue(pageData, pageModel.page_title);
                 pageModel.page_description = MySql_Tools.GetRecordValue(pageData, pageModel.page_description);

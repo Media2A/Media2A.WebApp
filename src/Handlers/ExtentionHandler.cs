@@ -11,9 +11,9 @@ namespace Media2A.WebApp
             var WebApp_CMS_Routing = new WebApp_DatabaseModels.WebApp_CMS_Routing().ReturnTable();
             var WebApp_CMS_Redirect = new WebApp_DatabaseModels.WebApp_CMS_Redirect().ReturnTable();
 
-            MySql_Queries.CreateNewTableFromModel(WebApp_CMS_Pages);
-            MySql_Queries.CreateNewTableFromModel(WebApp_CMS_Routing);
-            MySql_Queries.CreateNewTableFromModel(WebApp_CMS_Redirect);
+            MySql_Queries.DataModel.CreateNewTableFromModel(WebApp_CMS_Pages);
+            MySql_Queries.DataModel.CreateNewTableFromModel(WebApp_CMS_Routing);
+            MySql_Queries.DataModel.CreateNewTableFromModel(WebApp_CMS_Redirect);
 
         }
     }
