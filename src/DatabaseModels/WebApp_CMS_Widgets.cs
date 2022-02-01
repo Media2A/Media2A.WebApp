@@ -7,10 +7,9 @@ namespace Media2A.WebApp
         public class WebApp_CMS_Widgets
         {
             // Columns
-            public string layout_id = "widget_id";
-
-            public string layout_content = "moduleee";
-            public string themeid = "themeid";
+            public string widget_id = "widget_id";
+            public string widget_content = "widget_content";
+            public string theme_id = "theme_id";
 
             public MySql_Models.Table ReturnTable()
             {
@@ -18,9 +17,9 @@ namespace Media2A.WebApp
                 table.TableName = "WebApp_CMS_Widgets";
                 table.TableEngine = MySql_Models.TableEngine.INNODB;
                 table.Columns = new MySql_Models.Column[] {
-                 new MySql_Models.Column() { Name= layout_id, Datatype = MySql_Models.DataTypes.VARCHAR, Size = 35, Primary = true },
-                 new MySql_Models.Column() { Name = layout_content, Datatype = MySql_Models.DataTypes.VARCHAR, Size = 35 },
-                 new MySql_Models.Column() { Name = themeid, Datatype = MySql_Models.DataTypes.VARCHAR, Size = 35 },
+                 new MySql_Models.Column() { Name= widget_id, Datatype = MySql_Models.DataTypes.VARCHAR, Size = 35, Primary = true },
+                 new MySql_Models.Column() { Name = widget_content, Datatype = MySql_Models.DataTypes.MEDIUMTEXT },
+                 new MySql_Models.Column() { Name = theme_id, Datatype = MySql_Models.DataTypes.VARCHAR, Size = 35 },
                 };
 
                 return table;

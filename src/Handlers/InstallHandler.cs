@@ -44,6 +44,10 @@ namespace Media2A.WebApp
             var WebApp_Sessions = new WebApp_DatabaseModels.WebApp_Sessions().ReturnTable();
             MySql_Queries.DataModel.CreateNewTableFromModel(WebApp_Sessions);
 
+            var WebApp_CMS_Widgets = new WebApp_DatabaseModels.WebApp_CMS_Widgets().ReturnTable();
+            MySql_Queries.DataModel.CreateNewTableFromModel(WebApp_CMS_Widgets);
+            
+
 
         }
         public static void InstallHandler(HttpContext httpContent)

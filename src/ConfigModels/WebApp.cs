@@ -13,6 +13,7 @@ namespace Media2A.WebApp.ConfigModels
         public int DebugLevel { get; set; }
         public int SessionTimeout { get; set; }
         public string CrossOriginDomains { get; set; }
+        public string StaticContentUrl { get; set; }
 
     }
     public class WebApp_Object
@@ -24,6 +25,7 @@ namespace Media2A.WebApp.ConfigModels
             DataObject.DebugLevel = 1;
             DataObject.SessionTimeout = 3600;
             DataObject.CrossOriginDomains = "*";
+            DataObject.StaticContentUrl = "";
 
             return DataObject;
         }

@@ -14,7 +14,7 @@ namespace Media2A.WebApp
             {
                 REDIRECT,
                 PAGE,
-                MODULE,
+                COMPONENT,
                 EXTERNAL,
             }
         }

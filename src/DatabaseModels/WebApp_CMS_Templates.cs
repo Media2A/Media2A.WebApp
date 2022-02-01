@@ -21,7 +21,7 @@ namespace Media2A.WebApp
                 table.TableName = "WebApp_CMS_Templates";
                 table.TableEngine = MySql_Models.TableEngine.INNODB;
                 table.Columns = new MySql_Models.Column[] {
-                 new MySql_Models.Column() { Name = template_id, Datatype = MySql_Models.DataTypes.VARCHAR, Size = 35 },
+                 new MySql_Models.Column() { Name = template_id, Datatype = MySql_Models.DataTypes.VARCHAR, Size = 50 },
                  new MySql_Models.Column() { Name = template_description, Datatype = MySql_Models.DataTypes.VARCHAR, Size = 255, Index = true  },
                  new MySql_Models.Column() { Name = template_type, Datatype = MySql_Models.DataTypes.VARCHAR, Size = 35 },
                  new MySql_Models.Column() { Name = template_content, Datatype = MySql_Models.DataTypes.MEDIUMTEXT },

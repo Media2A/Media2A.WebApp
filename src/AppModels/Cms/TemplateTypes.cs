@@ -12,10 +12,12 @@ namespace Media2A.WebApp
         {
             public enum TemplateTypes
             {
+                ERROR,
                 MENU,
                 PAGE,
                 MODULE,
                 WIDGET,
+                THEME,
             }
         }
     }

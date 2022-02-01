@@ -12,7 +12,11 @@ namespace Media2A.WebApp
         {
             public enum PageElements
             {
-                PAGE_TITLE,
+                HTML,
+                HEAD,
+                WIDGET,
+                BODY,
+                PAGE_TITLE
             }
         }
     }

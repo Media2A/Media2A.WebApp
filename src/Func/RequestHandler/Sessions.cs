@@ -32,7 +32,7 @@ namespace Media2A.WebApp
                 s.session_ipForward = CodeLogic_Funcs.GetClientXforwardIP(httpContent);
                 s.session_lastUrl = CodeLogic_Funcs.GetRawUrl(httpContent);
 
-                httpContent.Response.WriteAsync(MySql_Queries.DataModel.InsertDataByModelByID(s));
+                MySql_Queries.DataModel.InsertDataByModelByID(s);
             }
             else
             {
