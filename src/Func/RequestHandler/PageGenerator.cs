@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Extensions;
+﻿using CL.MySQL;
 using CodeLogic;
-using CL.MySQL;
-using System.Data;
+using Microsoft.AspNetCore.Http;
 
 namespace Media2A.WebApp
 {
@@ -10,12 +8,11 @@ namespace Media2A.WebApp
     {
         public static void PageGenerator(HttpContext httpContent, string routeParm)
         {
-
             // Get page data
 
             var pageModel = new WebApp_DatabaseModels.WebApp_CMS_Pages();
             var pageData = CL.MySQL.MySql_Queries.DataModel.GetDataByModelByID(pageModel.ReturnTable(), pageModel.page_id, routeParm);
-            
+
             // Variables from data
 
             pageModel.page_title = MySql_Tools.GetRecordValue(pageData, pageModel.page_title);
@@ -24,9 +21,8 @@ namespace Media2A.WebApp
             pageModel.menu_id = MySql_Tools.GetRecordValue(pageData, pageModel.menu_id);
             pageModel.theme_id = MySql_Tools.GetRecordValue(pageData, pageModel.theme_id);
 
-
             var themeTemplate = WebApp_Funcs.Cms.GetTemplateByID($"{pageModel.theme_id}_{WebApp_AppModels.Cms.TemplateTypes.THEME.ToString()}");
- 
+
             // Do page work
 
             var pageOutput = themeTemplate;
@@ -43,7 +39,10 @@ namespace Media2A.WebApp
             // Generate menu
 
             // var menuContent = GenerateMenuByID(pageModel.menu_id);
-            httpContent.Response.WriteAsync(pageOutput);
+
+            var Plugintest = WebApp_Funcs.GetExtensionResult("GetBootStrapDefaults", httpContent);
+
+            httpContent.Response.WriteAsync(Plugintest.ToString());
         }
     }
 }
