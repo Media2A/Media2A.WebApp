@@ -26,7 +26,7 @@ namespace Media2A.WebApp
             // Do page work
 
             var pageOutput = themeTemplate;
-
+                
             pageOutput = WebApp_Funcs.Cms.DefaultTemplateProcessing(pageOutput, httpContent);
 
             // ------------   Do initial work
@@ -40,9 +40,9 @@ namespace Media2A.WebApp
 
             // var menuContent = GenerateMenuByID(pageModel.menu_id);
 
-            var Plugintest = WebApp_Funcs.GetExtensionResult("GetBootStrapDefaults", httpContent);
+            // var Plugintest = WebApp_Funcs.GetExtensionResult("GetBootStrapDefaults", httpContent);
 
-            httpContent.Response.WriteAsync(Plugintest.ToString());
+            // httpContent.Response.WriteAsync(Plugintest.ToString());
         }
     }
 }

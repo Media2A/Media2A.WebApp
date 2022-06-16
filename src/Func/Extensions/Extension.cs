@@ -11,8 +11,8 @@ namespace Media2A.WebApp
         {
             var extName = $"WA.{extensionName}.dll";
             var extMethod = $"WA.{extensionName}.{method}"; 
-            CodeLogic_Funcs.GetObjectInvokeDll(extName, extMethod, extMethod);
-            return "";
+            var result = CodeLogic_Funcs.GetObjectInvokeDll(extName, extMethod, extMethod);
+            return result;
         }
 
     }
