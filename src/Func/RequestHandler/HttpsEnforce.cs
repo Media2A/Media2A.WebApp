@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using CodeLogic;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
-using CodeLogic;
-using CL.MySQL;
-using System.Data;
 
 namespace Media2A.WebApp
 {
@@ -10,7 +8,6 @@ namespace Media2A.WebApp
     {
         public static void HttpsEnforce(HttpContext httpContent)
         {
-
             var enforceHttps = CodeLogic_Framework.GetConfigValueBool("webapp.json", "SiteEnforceHttps");
             var siteProxyEnabled = CodeLogic_Framework.GetConfigValueBool("webapp.json", "SiteProxyEnabled");
             string redirectUrl = httpContent.Request.GetEncodedUrl();
@@ -20,7 +17,6 @@ namespace Media2A.WebApp
             {
                 redirectUrl = redirectUrl.Replace("http:", "https:");
                 httpContent.Response.Redirect(redirectUrl, false);
-
             }
         }
     }

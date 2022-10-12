@@ -1,11 +1,5 @@
-﻿using System;
-using CodeLogic;
-using CL.MySQL.ConfigModels;
-using CL.Smtp.ConfigModels;
-using Media2A.WebApp.ConfigModels;
-using CL.MySQL;
+﻿using CodeLogic;
 using Microsoft.AspNetCore.Http;
-
 
 namespace Media2A.WebApp
 {
@@ -15,7 +9,6 @@ namespace Media2A.WebApp
         {
             public static string DefaultTemplateProcessing(string templateContent, HttpContext httpContent)
             {
-
                 // Get CDN domain
 
                 var contentUrl = CodeLogic_Framework.GetConfigValueString("webapp.json", "StaticContentUrl");
@@ -23,8 +16,6 @@ namespace Media2A.WebApp
 
                 return templateContent;
             }
-
         }
-        
     }
 }

@@ -9,7 +9,11 @@ namespace Media2A.WebApp
         {
             try
             {
-                // ----------- PROCESS HEADERS AND ENFORCEMENT ------------
+                // ----------- PROCESS HEADERS AND CHECKS ------------
+
+                // Enforce https if enabled in config
+
+                WebApp_Funcs.HttpsEnforce(httpContent);
 
                 // Http headers check - Access-Control-Allow-Origin, etc...
 
@@ -19,22 +23,22 @@ namespace Media2A.WebApp
 
                 WebApp_Funcs.HttpsEnforce(httpContent);
 
-                // SESSION HANDLING
-
-                WebApp_Funcs.UpdateSession(httpContent);
-
                 // ----------- PROCESS REQUEST ------------
 
                 // ROUTING
 
                 var routeInfo = WebApp_Funcs.Routing(httpContent); // retrieve routing info from database
 
-                if(routeInfo.Count < 1)
+                if (routeInfo.Count < 1)
                 {
                     WebApp_Funcs.ErrorPage(httpContent, 404);
                 }
                 else
                 {
+                    // Update session
+
+                    WebApp_Funcs.UpdateSession(httpContent);
+
                     var routingDataModel = new WebApp_DatabaseModels.WebApp_CMS_Routing();
 
                     // Process route type
@@ -65,8 +69,13 @@ namespace Media2A.WebApp
                         case WebApp_AppModels.RequestHandler.RoutingTypes.EXTERNAL:
                             httpContent.Response.WriteAsync("EXTERNAL");
 
-                            var menuTest = WebApp_Funcs.Cms.GenerateMenuByID("fraghunt");
-                            httpContent.Response.WriteAsync("TEST MENU: " + menuTest);
+                            // var test = CodeLogic_Funcs.GetStringInvokeDll("WebApp.Extension.Testing", "Extension", "Test");
+
+                            //httpContent.Response.WriteAsync(test);
+                            break;
+
+                        case WebApp_AppModels.RequestHandler.RoutingTypes.COMPONENT_API:
+                            httpContent.Response.WriteAsync("COMPONENT_API");
 
                             // var test = CodeLogic_Funcs.GetStringInvokeDll("WebApp.Extension.Testing", "Extension", "Test");
 
@@ -77,9 +86,7 @@ namespace Media2A.WebApp
                             httpContent.Response.WriteAsync("DEFAULT");
                             break;
                     }
-                
                 }
-
             }
             catch (Exception ex)
             {

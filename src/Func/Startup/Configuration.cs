@@ -1,9 +1,7 @@
-﻿using System;
-using CodeLogic;
-using CL.MySQL.ConfigModels;
+﻿using CL.MySQL.ConfigModels;
 using CL.Smtp.ConfigModels;
+using CodeLogic;
 using Media2A.WebApp.ConfigModels;
-
 
 namespace Media2A.WebApp
 {
@@ -19,8 +17,6 @@ namespace Media2A.WebApp
 
             // WebApp
             CodeLogic_Framework.ValidateConfigFile("webapp.json", WebApp_Object.GenerateModel());
-
-           
         }
     }
 }

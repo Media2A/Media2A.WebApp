@@ -26,7 +26,7 @@ namespace Media2A.WebApp
             // Do page work
 
             var pageOutput = themeTemplate;
-                
+
             pageOutput = WebApp_Funcs.Cms.DefaultTemplateProcessing(pageOutput, httpContent);
 
             // ------------   Do initial work

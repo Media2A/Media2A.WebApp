@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Media2A.WebApp
+﻿namespace Media2A.WebApp
 {
     public partial class WebApp
     {
+    }
 
-   }
     // Declare Classes for CodeLogic
 
     // Default parameters for WebApp
@@ -26,5 +20,4 @@ namespace Media2A.WebApp
 
     // Contains WebApp Funtionality
     public partial class WebApp_Funcs { }
-
 }

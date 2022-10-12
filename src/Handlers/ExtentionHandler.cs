@@ -14,7 +14,6 @@ namespace Media2A.WebApp
             MySql_Queries.DataModel.CreateNewTableFromModel(WebApp_CMS_Pages);
             MySql_Queries.DataModel.CreateNewTableFromModel(WebApp_CMS_Routing);
             MySql_Queries.DataModel.CreateNewTableFromModel(WebApp_CMS_Redirect);
-
         }
     }
 }

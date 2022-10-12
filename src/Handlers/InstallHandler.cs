@@ -1,11 +1,12 @@
 ﻿using CL.MySQL;
 using Microsoft.AspNetCore.Http;
 
+// Temp installation handler...
+
 namespace Media2A.WebApp
 {
     public partial class WebApp_Handlers
     {
-
         private static void CreateTables()
         {
             // WebApp
@@ -21,12 +22,6 @@ namespace Media2A.WebApp
 
             var WebApp_CMS_Redirect = new WebApp_DatabaseModels.WebApp_CMS_Redirect().ReturnTable();
             MySql_Queries.DataModel.CreateNewTableFromModel(WebApp_CMS_Redirect);
-
-            var WebApp_CMS_Menus = new WebApp_DatabaseModels.WebApp_CMS_Menus().ReturnTable();
-            MySql_Queries.DataModel.CreateNewTableFromModel(WebApp_CMS_Menus);
-
-            var WebApp_CMS_MenusItems = new WebApp_DatabaseModels.WebApp_CMS_MenusItems().ReturnTable();
-            MySql_Queries.DataModel.CreateNewTableFromModel(WebApp_CMS_MenusItems);
 
             // CMS
             var WebApp_CMS_Themes = new WebApp_DatabaseModels.WebApp_CMS_Themes().ReturnTable();
@@ -46,14 +41,30 @@ namespace Media2A.WebApp
 
             var WebApp_CMS_Widgets = new WebApp_DatabaseModels.WebApp_CMS_Widgets().ReturnTable();
             MySql_Queries.DataModel.CreateNewTableFromModel(WebApp_CMS_Widgets);
-            
-
-
         }
+
+        private static void ExtensionsInstall()
+        {
+            var extensionPath = CodeLogic.CodeLogic_Defaults.GetBaseFilePath();
+            string[] extensionDlls = Directory.GetFiles(extensionPath, "WA.*.dll", SearchOption.AllDirectories);
+
+            foreach (var dll in extensionDlls)
+            {
+                var filename = Path.GetFileName(dll);
+
+                var result = CodeLogic.CodeLogic_Funcs.GetStringInvokeDll(filename, "Extension", "Install");
+            }
+        }
+
         public static void InstallHandler(HttpContext httpContent)
         {
-            CreateTables();
-        }
+            // Core
 
+            CreateTables();
+
+            // Extensions
+
+            ExtensionsInstall();
+        }
     }
 }

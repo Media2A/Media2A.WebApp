@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using CodeLogic;
+﻿using CodeLogic;
+using Microsoft.AspNetCore.Http;
 
 namespace Media2A.WebApp
 {
@@ -10,11 +10,7 @@ namespace Media2A.WebApp
             WebApp_Funcs.Configuration();
             CodeLogic_Framework.CacheConfigFiles();
 
-            // Load config files
-
             InstallHandler(httpContent);
-
         }
-
     }
 }

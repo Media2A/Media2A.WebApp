@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using CodeLogic;
-using CL.MySQL;
-using System.Data;
+﻿using CodeLogic;
 
 namespace Media2A.WebApp
 {
