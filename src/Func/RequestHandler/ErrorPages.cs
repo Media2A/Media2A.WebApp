@@ -5,32 +5,48 @@ namespace Media2A.WebApp
 {
     public partial class WebApp_Funcs
     {
-        public static void ErrorPage(HttpContext httpContent, int errorCode)
+        public static void ErrorPage(HttpContext context, int errorCode)
         {
-            // Get page data
+            // Get page template
 
-            var themeTemplate = WebApp_Funcs.Cms.GetTemplateByID($"DEFAULT_{WebApp_AppModels.Cms.TemplateTypes.ERROR.ToString()}");
+            var themeTemplate = WebApp_Funcs.Cms.GetTemplateStaticDefault("error.html");
+
+            // Switch depending of error code
+
+            var langFile = "webapp.errorpage";
+
+            string header = "";
+            string desc = "";
+
+            switch (errorCode)
+            {
+                case 404:
+                    header = WebApp_Funcs.Cms.GetLocalizationString(langFile, "errorpage.404-header", context);
+                    desc = WebApp_Funcs.Cms.GetLocalizationString(langFile, "errorpage.404-desc", context);
+                    break;
+                case 501:
+                    header = WebApp_Funcs.Cms.GetLocalizationString(langFile, "errorpage.501-header", context);
+                    desc = WebApp_Funcs.Cms.GetLocalizationString(langFile, "errorpage.501-desc", context);
+                    break;
+                default:
+                    header = WebApp_Funcs.Cms.GetLocalizationString(langFile, "errorpage.0-header", context);
+                    desc = WebApp_Funcs.Cms.GetLocalizationString(langFile, "errorpage.0-desc", context);
+                    break;
+            }
+
+
+            themeTemplate = themeTemplate.Replace("{error}", errorCode.ToString());
+
+            themeTemplate = themeTemplate.Replace("{title}", $"{errorCode.ToString()} - {header}");
+            themeTemplate = themeTemplate.Replace("{header}", $"{header}");
+            themeTemplate = themeTemplate.Replace("{content}", $"{desc}");
 
             // Do page work
 
             var pageOutput = themeTemplate;
 
-            // Process template
-
-            foreach (var item in collection)
-            {
-
-            }
-
-            // [tags]
-
-            // Title
-            pageOutput = CodeLogic_Funcs.SimpleReplaceTag(pageOutput, WebApp_AppModels.Cms.PageElements_Base.PAGE_TITLE.ToString(), "Page not found");
-
-            // Generate menu
-
             // var menuContent = GenerateMenuByID(pageModel.menu_id);
-            httpContent.Response.WriteAsync(pageOutput);
+            context.Response.WriteAsync(pageOutput);
         }
     }
 }

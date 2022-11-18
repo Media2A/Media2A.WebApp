@@ -9,6 +9,10 @@ namespace Media2A.WebApp
     {
         public static void Configuration()
         {
+
+            // Localization files
+            CodeLogic_Framework.CacheLocalizationFiles();
+
             // Generate or check Database config
             CodeLogic_Framework.ValidateConfigFile("database.json", Database_Object.GenerateModel());
 
@@ -17,6 +21,7 @@ namespace Media2A.WebApp
 
             // WebApp
             CodeLogic_Framework.ValidateConfigFile("webapp.json", WebApp_Object.GenerateModel());
+
         }
     }
 }

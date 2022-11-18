@@ -10,7 +10,6 @@ namespace Media2A.WebApp
             WebApp_Funcs.Configuration();
             CodeLogic_Framework.CacheConfigFiles();
 
-            InstallHandler(httpContent);
         }
     }
 }

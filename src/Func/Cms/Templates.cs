@@ -1,4 +1,5 @@
-﻿using CL.MySQL;
+﻿using CodeLogic;
+using CL.MySQL;
 
 namespace Media2A.WebApp
 {
@@ -28,6 +29,22 @@ namespace Media2A.WebApp
                 templateModel.template_content = MySql_Tools.GetRecordValue(menuData, nameof(templateModel.template_content));
 
                 return templateModel.template_content;
+            }
+            public static string GetTemplateStaticDefault(string file)
+            {
+                var filePath = $"{CodeLogic_Defaults.GetBaseFilePath()}/app/wwwroot/WebApp/Themes/Default/" + file;
+
+                var templateModel = CodeLogic_Funcs.ReadTextFile(filePath);
+
+                return templateModel;
+            }
+            public static string GetTemplateStatic(string file, string themeId)
+            {
+                var filePath = $"{CodeLogic_Defaults.GetBaseFilePath()}/wwwroot/WebApp/Themes/" + themeId  + "/" + file;
+
+                var templateModel = CodeLogic_Funcs.ReadTextFile(filePath);
+
+                return templateModel;
             }
         }
     }
