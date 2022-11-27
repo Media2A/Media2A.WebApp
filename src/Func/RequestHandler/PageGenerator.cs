@@ -1,6 +1,7 @@
 ﻿using CL.MySQL;
 using CodeLogic;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Media2A.WebApp
 {
@@ -11,40 +12,34 @@ namespace Media2A.WebApp
             // Get page data
 
             var pageModel = new WebApp_DatabaseModels.WebApp_CMS_Pages();
-            var pageData = CL.MySQL.MySql_Queries.DataModel.GetDataByModelByID(pageModel.ReturnTable(), pageModel.page_id, routeParm);
+            var pageData = MySql_Queries.DataModel.GetDataByModelByID(pageModel.ReturnTable(), nameof(pageModel.page_id), routeParm);
 
             // Variables from data
 
-            pageModel.page_title = MySql_Tools.GetRecordValue(pageData, pageModel.page_title);
-            pageModel.page_description = MySql_Tools.GetRecordValue(pageData, pageModel.page_description);
-            pageModel.page_content = MySql_Tools.GetRecordValue(pageData, pageModel.page_content);
-            pageModel.menu_id = MySql_Tools.GetRecordValue(pageData, pageModel.menu_id);
-            pageModel.theme_id = MySql_Tools.GetRecordValue(pageData, pageModel.theme_id);
+            pageModel.page_title = MySql_Tools.GetRecordValue(pageData, nameof(pageModel.page_title));
+            pageModel.page_description = MySql_Tools.GetRecordValue(pageData, nameof(pageModel.page_description));
+            pageModel.page_content = MySql_Tools.GetRecordValue(pageData, nameof(pageModel.page_content));
+            pageModel.theme_id = MySql_Tools.GetRecordValue(pageData, nameof(pageModel.theme_id));
 
             var themeTemplate = WebApp_Funcs.Cms.GetTemplateByID($"{pageModel.theme_id}_{WebApp_AppModels.Cms.TemplateTypes.THEME.ToString()}");
 
             // Do page work
 
             var pageOutput = themeTemplate;
-
-            pageOutput = WebApp_Funcs.Cms.DefaultTemplateProcessing(pageOutput, httpContent);
+            pageOutput = pageOutput.Replace("{page-content}", pageModel.page_content);
 
             // ------------   Do initial work
 
             // [tags]
 
-            WebApp_Funcs.Cms.ProcessTags(pageOutput, httpContent);
+            pageOutput = WebApp_Funcs.Cms.ProcessTags(pageOutput, httpContent);
 
             // Title
-            pageOutput = CodeLogic_Funcs.SimpleReplaceTag(pageOutput, WebApp_AppModels.Cms.PageElements_Base.BODY.ToString(), pageModel.page_title);
+            // pageOutput = CodeLogic_Funcs.SimpleReplaceTag(pageOutput, WebApp_AppModels.Cms.PageElements_Base.BODY.ToString(), pageModel.page_title);
 
             // Generate menu
 
-            // var menuContent = GenerateMenuByID(pageModel.menu_id);
-
-            // var Plugintest = WebApp_Funcs.GetExtensionResult("GetBootStrapDefaults", httpContent);
-
-            // httpContent.Response.WriteAsync(Plugintest.ToString());
+            httpContent.Response.WriteAsync(pageOutput);
         }
     }
 }

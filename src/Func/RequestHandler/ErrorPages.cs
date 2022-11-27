@@ -24,9 +24,9 @@ namespace Media2A.WebApp
                     header = WebApp_Funcs.Cms.GetLocalizationString(langFile, "errorpage.404-header", context);
                     desc = WebApp_Funcs.Cms.GetLocalizationString(langFile, "errorpage.404-desc", context);
                     break;
-                case 501:
-                    header = WebApp_Funcs.Cms.GetLocalizationString(langFile, "errorpage.501-header", context);
-                    desc = WebApp_Funcs.Cms.GetLocalizationString(langFile, "errorpage.501-desc", context);
+                case 500:
+                    header = WebApp_Funcs.Cms.GetLocalizationString(langFile, "errorpage.500-header", context);
+                    desc = WebApp_Funcs.Cms.GetLocalizationString(langFile, "errorpage.500-desc", context);
                     break;
                 default:
                     header = WebApp_Funcs.Cms.GetLocalizationString(langFile, "errorpage.0-header", context);

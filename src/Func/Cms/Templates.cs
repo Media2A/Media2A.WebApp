@@ -11,12 +11,9 @@ namespace Media2A.WebApp
             {
                 var templateModel = new WebApp_DatabaseModels.WebApp_CMS_Templates();
 
-                var menuData = CL.MySQL.MySql_Queries.DataModel.GetDataByModelByID(templateModel.ReturnTable(), nameof(templateModel.template_id), templateId);
+                var templateContent = CL.MySQL.MySql_Queries.DataModel.GetDataByModelByID(templateModel.ReturnTable(), nameof(templateModel.template_id), templateId);
 
-                // Menu items
-                templateModel.template_content = MySql_Tools.GetRecordValue(menuData, nameof(templateModel.template_content));
-
-                return templateModel.template_content;
+                return templateContent.GetValueOrDefault(nameof(templateModel.template_content)).ToString();
             }
 
             public static string GetTemplateByIDWithReplace(string templateId, List<string[]> ts)
@@ -26,7 +23,7 @@ namespace Media2A.WebApp
                 var menuData = CL.MySQL.MySql_Queries.DataModel.GetDataByModelByID(templateModel.ReturnTable(), nameof(templateModel.template_id), templateId);
 
                 // Menu items
-                templateModel.template_content = MySql_Tools.GetRecordValue(menuData, nameof(templateModel.template_content));
+                //templateModel.template_content = MySql_Tools.GetRecordValue(menuData, );
 
                 return templateModel.template_content;
             }

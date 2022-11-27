@@ -1,6 +1,5 @@
 ﻿using CodeLogic;
 using Microsoft.AspNetCore.Http;
-using System.Globalization;
 
 namespace Media2A.WebApp
 {
@@ -11,12 +10,10 @@ namespace Media2A.WebApp
             public static string GetLocalizationString(string localizationFile, string key, HttpContext httpContext)
             {
                 // Defaults
-                var defaultLang = "en-US";
+                var defaultLang = "en";
                 var lang = CodeLogic_Funcs.GetClientLanguage(httpContext);
                 var stringContent = "";
                 var langFile = $"{localizationFile}.{lang}.json";
-
-
 
                 if (!CodeLogic_Funcs.CheckCachedObject(langFile))
                 {
@@ -26,9 +23,6 @@ namespace Media2A.WebApp
                 {
                     stringContent = CodeLogic_Framework.GetLocalizationValueString(langFile, key);
                 }
-
-
-          
 
                 return stringContent;
             }

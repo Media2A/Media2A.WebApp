@@ -1,5 +1,10 @@
 ﻿using CodeLogic;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Razor.TagHelpers;
+using System;
+using System.Net.Http;
+using System.Security.Policy;
+
 
 namespace Media2A.WebApp
 {
@@ -7,35 +12,58 @@ namespace Media2A.WebApp
     {
         public partial class Cms
         {
-            public static string ProcessTags(string templateContent, HttpContext httpContent)
+            private static string TagProcessor(string[] tagContent, HttpContext httpContext)
             {
 
-                // Seperate tag info
-                var tagRaw = CodeLogic_Funcs.ExtractBetweenTags(templateContent, "{", "}", true);
-                var tagContent = tagRaw.Replace("{", "").Replace("}", "").Split(":");
-
+                var returnCode = "";
                 var tagType = tagContent[0];
                 var tagName = tagContent[1];
-                var tagData = tagContent[2].Split("|");
-
-                var returnCode = "";
+                var tagData = tagContent[2];
 
                 switch (tagType)
                 {
-                    case "module":
+                    case "Module":
+
                         returnCode = ProcessModule(tagName, tagData).ToString();
+
+                        break;
+                    case "WebApp":
+                        if (tagName == "Page")
+                        {
+                            var url = CodeLogic_Framework.GetConfigValueString("webapp.json", "StaticContentUrl");
+                            returnCode = url;
+                        }
                         break;
                     default:
                         break;
                 }
 
-                // Execute module and replace code
+                return returnCode;
+            }
 
-                // Clean up tag from templateContent
+            public static string ProcessTags(string templateContent, HttpContext httpContent)
+            {
+                var output = templateContent;
+                var maxRun = 99; // use this for error handling
+                var counterRun = 0;
 
-                templateContent = templateContent.Replace(tagRaw, returnCode);
+                if (output.Contains("{$"))
+                {
+                    while (output.Contains("{$") && counterRun < maxRun)
+                    {
+                        counterRun++;
+                        // Seperate tag info
+                        var tagRaw = CodeLogic_Funcs.ExtractBetweenTags(output, "{$", "$}", true);
+                        var tagClean = tagRaw.Replace("{$", "").Replace("$}", "");
+                        var tagContent = tagClean.Split("|");
 
-                return templateContent;
+                        output = output.Replace(tagRaw, TagProcessor(tagContent, httpContent));
+
+
+                    }
+                }
+
+                return output;
             }
         }
     }

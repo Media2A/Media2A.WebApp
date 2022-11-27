@@ -6,7 +6,7 @@ namespace Media2A.WebApp
     {
         public class WebApp_CMS_Routing
         {
-            public string route_id;
+            public int route_id;
             public string route_url;
             public string route_type;
             public string route_parameters;

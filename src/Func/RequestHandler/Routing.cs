@@ -24,25 +24,24 @@ namespace Media2A.WebApp
                 WebApp_Funcs.ErrorPage(httpContent, 404);
             }
 
-
             // If no errors or checks fails - continue with page lookup
             else
             {
                 // Update session
-
                 WebApp_Funcs.UpdateSession(httpContent);
 
+                // Get routing model
                 var routingDataModel = new WebApp_DatabaseModels.WebApp_CMS_Routing();
 
                 // Process route type
-
-                var routeType = Enum.Parse<WebApp_AppModels.RequestHandler.RoutingTypes>(routeInfo.GetValueOrDefault(routingDataModel.route_type).ToString());
-                var routeParm = routeInfo.GetValueOrDefault(routingDataModel.route_parameters).ToString();
+                var dbRouteType = nameof(routingDataModel.route_type);
+                var routeType = Enum.Parse<WebApp_AppModels.RequestHandler.RoutingTypes>(routeInfo.GetValueOrDefault(dbRouteType).ToString());
+                var routeParm = routeInfo.GetValueOrDefault(nameof(routingDataModel.route_parameters)).ToString();
 
                 switch (routeType)
                 {
                     case WebApp_AppModels.RequestHandler.RoutingTypes.PAGE:
-                        // WebApp_Funcs.PageGenerator(httpContent, routeParm);
+                        WebApp_Funcs.PageGenerator(httpContent, routeParm);
                         break;
 
                     case WebApp_AppModels.RequestHandler.RoutingTypes.COMPONENT:
@@ -76,7 +75,7 @@ namespace Media2A.WebApp
                         break;
 
                     default:
-                        httpContent.Response.WriteAsync("DEFAULT");
+                        WebApp_Funcs.ErrorPage(httpContent, 404);
                         break;
                 }
             }

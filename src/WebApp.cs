@@ -1,8 +1,6 @@
 ﻿namespace Media2A.WebApp
 {
-    public partial class WebApp
-    {
-    }
+    public partial class WebApp { }
 
     // Declare Classes for CodeLogic
 
