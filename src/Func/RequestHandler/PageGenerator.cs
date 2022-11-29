@@ -16,7 +16,6 @@ namespace Media2A.WebApp
 
             // Variables from data
 
-            pageModel.page_title = MySql_Tools.GetRecordValue(pageData, nameof(pageModel.page_title));
             pageModel.page_description = MySql_Tools.GetRecordValue(pageData, nameof(pageModel.page_description));
             pageModel.page_content = MySql_Tools.GetRecordValue(pageData, nameof(pageModel.page_content));
             pageModel.theme_id = MySql_Tools.GetRecordValue(pageData, nameof(pageModel.theme_id));
@@ -32,7 +31,7 @@ namespace Media2A.WebApp
 
             // [tags]
 
-            pageOutput = WebApp_Funcs.Cms.ProcessTags(pageOutput, httpContent);
+            pageOutput = WebApp_Funcs.Cms.ProcessTags(pageData, pageOutput, httpContent);
 
             // Title
             // pageOutput = CodeLogic_Funcs.SimpleReplaceTag(pageOutput, WebApp_AppModels.Cms.PageElements_Base.BODY.ToString(), pageModel.page_title);

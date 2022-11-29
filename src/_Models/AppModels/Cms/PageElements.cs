@@ -4,31 +4,19 @@
     {
         public partial class Cms
         {
-            public enum PageElements_Base
+            public enum PageElements
             {
-                HTML,
-                HEAD,
-                BODY,
+                // Base elements
+                CONTENT_URL,
+
+                // HTML head
+                PAGE_TITLE,
+                PAGE_DESCRIPTION,
+                PAGE_KEYWORDS,
+                PAGE_AUTHOR,
+                PAGE_CONTENT
 
             }
-            public enum PageElements_Head
-            {
-                HEADER,
-                HEAD,
-                WIDGET,
-                BODY,
-                PAGE_TITLE
-            }
-
-            public enum PageElements_Body
-            {
-                HEADER,
-                HEAD,
-                WIDGET,
-                BODY,
-                PAGE_TITLE
-            }
-
         }
     }
 }

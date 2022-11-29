@@ -1,9 +1,6 @@
-﻿using CodeLogic;
+﻿using CL.MySQL;
+using CodeLogic;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Razor.TagHelpers;
-using System;
-using System.Net.Http;
-using System.Security.Policy;
 
 
 namespace Media2A.WebApp
@@ -12,28 +9,25 @@ namespace Media2A.WebApp
     {
         public partial class Cms
         {
-            private static string TagProcessor(string[] tagContent, HttpContext httpContext)
+            private static string TagProcessor(SortedDictionary<string, object> pageData, string[] tagContent, HttpContext httpContext)
             {
-
                 var returnCode = "";
+
+                // Get tag values
                 var tagType = tagContent[0];
                 var tagName = tagContent[1];
                 var tagData = tagContent[2];
 
-                switch (tagType)
+                switch (Enum.Parse<WebApp_AppModels.Cms.TagType>(tagType))
                 {
-                    case "Module":
-
+                    case WebApp_AppModels.Cms.TagType.Module:
                         returnCode = ProcessModule(tagName, tagData).ToString();
+                        break;
 
+                    case WebApp_AppModels.Cms.TagType.WebApp:
+                        returnCode = Tag_Page(pageData, tagData);
                         break;
-                    case "WebApp":
-                        if (tagName == "Page")
-                        {
-                            var url = CodeLogic_Framework.GetConfigValueString("webapp.json", "StaticContentUrl");
-                            returnCode = url;
-                        }
-                        break;
+
                     default:
                         break;
                 }
@@ -41,7 +35,7 @@ namespace Media2A.WebApp
                 return returnCode;
             }
 
-            public static string ProcessTags(string templateContent, HttpContext httpContent)
+            public static string ProcessTags(SortedDictionary<string, object> pageData, string templateContent, HttpContext httpContent)
             {
                 var output = templateContent;
                 var maxRun = 99; // use this for error handling
@@ -57,13 +51,46 @@ namespace Media2A.WebApp
                         var tagClean = tagRaw.Replace("{$", "").Replace("$}", "");
                         var tagContent = tagClean.Split("|");
 
-                        output = output.Replace(tagRaw, TagProcessor(tagContent, httpContent));
-
-
+                        output = output.Replace(tagRaw, TagProcessor(pageData, tagContent, httpContent));
                     }
                 }
 
                 return output;
+            }
+
+            // Tag functionailty
+
+            public static string Tag_Page(SortedDictionary<string, object> pageData, string tagContent)
+            {
+
+                var returnCode = "";
+                var pageModel = new WebApp_DatabaseModels.WebApp_CMS_Pages();
+
+                switch (Enum.Parse<WebApp_AppModels.Cms.PageElements>(tagContent))
+                {
+                    case WebApp_AppModels.Cms.PageElements.CONTENT_URL:
+                        returnCode = CodeLogic_Framework.GetConfigValueString("webapp.json", "StaticContentUrl");
+                        break;
+                    case WebApp_AppModels.Cms.PageElements.PAGE_TITLE:
+                        returnCode = MySql_Tools.GetRecordValue(pageData, nameof(pageModel.page_title));
+                        break;
+                    case WebApp_AppModels.Cms.PageElements.PAGE_KEYWORDS:
+                        
+                        returnCode = MySql_Tools.GetRecordValue(pageData, nameof(pageModel.page_keywords));
+                        break;
+                    case WebApp_AppModels.Cms.PageElements.PAGE_DESCRIPTION:
+                        returnCode = MySql_Tools.GetRecordValue(pageData, nameof(pageModel.page_description));
+                        break;
+                    case WebApp_AppModels.Cms.PageElements.PAGE_AUTHOR:
+                        returnCode = MySql_Tools.GetRecordValue(pageData, nameof(pageModel.page_author));
+                        break;
+                    case WebApp_AppModels.Cms.PageElements.PAGE_CONTENT:
+                        returnCode = MySql_Tools.GetRecordValue(pageData, nameof(pageModel.page_content));
+                        break;
+                    default:
+                        break;
+                }
+                return returnCode;
             }
         }
     }
