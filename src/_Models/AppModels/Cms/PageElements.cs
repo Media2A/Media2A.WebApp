@@ -8,6 +8,7 @@
             {
                 // Base elements
                 CONTENT_URL,
+                WEBAPP_URL,
 
                 // HTML head
                 PAGE_TITLE,

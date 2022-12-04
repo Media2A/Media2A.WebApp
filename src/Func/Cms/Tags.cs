@@ -21,7 +21,7 @@ namespace Media2A.WebApp
                 switch (Enum.Parse<WebApp_AppModels.Cms.TagType>(tagType))
                 {
                     case WebApp_AppModels.Cms.TagType.Module:
-                        returnCode = ProcessModule(tagName, tagData).ToString();
+                        // returnCode = ProcessModule(tagName, tagData).ToString();
                         break;
 
                     case WebApp_AppModels.Cms.TagType.WebApp:
@@ -70,6 +70,9 @@ namespace Media2A.WebApp
                 {
                     case WebApp_AppModels.Cms.PageElements.CONTENT_URL:
                         returnCode = CodeLogic_Framework.GetConfigValueString("webapp.json", "StaticContentUrl");
+                        break;
+                    case WebApp_AppModels.Cms.PageElements.WEBAPP_URL:
+                        returnCode = "/webapp";
                         break;
                     case WebApp_AppModels.Cms.PageElements.PAGE_TITLE:
                         returnCode = MySql_Tools.GetRecordValue(pageData, nameof(pageModel.page_title));

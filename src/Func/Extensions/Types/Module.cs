@@ -4,11 +4,12 @@ namespace Media2A.WebApp
 {
     public partial class WebApp_Funcs
     {
-        public static object ProcessModule(string moduleName, string moduleParm)
+        public static string ProcessModule(string moduleName, string moduleParm)
         {
-            var filePath = $"{CodeLogic_Defaults.GetStorageFilePath()}/extensions/";
-            var result = CodeLogic_Funcs.GetStringInvokeDll(filePath, $"WA.{moduleName}", "");
-            // [$MODULE|WA.Core.Menus|Menu$]
+            var fileName = $"WA.Core.{ CodeLogic_Funcs.UpperCaseFirstCharacter(moduleName) }";
+            var moduleType = $"WA.Core.{CodeLogic_Funcs.UpperCaseFirstCharacter(moduleName)}.Module";
+            string[] moduleParms = { moduleParm };
+            var result = CodeLogic_Funcs.GetStringInvokeDllWithParm(fileName+ ".dll", moduleType, "ModuleProcessor", moduleParms);
             return result;
         }
     }

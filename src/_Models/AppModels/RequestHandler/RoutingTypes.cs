@@ -8,6 +8,8 @@
             {
                 REDIRECT,
                 PAGE,
+                PAGE_AJAX,
+                EXT_MODULE,
                 COMPONENT,
                 COMPONENT_API,
                 EXTERNAL,

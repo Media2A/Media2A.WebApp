@@ -27,8 +27,6 @@ namespace Media2A.WebApp
             // If no errors or checks fails - continue with page lookup
             else
             {
-                // Update session
-                WebApp_Funcs.UpdateSession(httpContent);
 
                 // Get routing model
                 var routingDataModel = new WebApp_DatabaseModels.WebApp_CMS_Routing();
@@ -41,9 +39,20 @@ namespace Media2A.WebApp
                 switch (routeType)
                 {
                     case WebApp_AppModels.RequestHandler.RoutingTypes.PAGE:
+                        // Update session
+                        
+                        WebApp_Funcs.UpdateSession(httpContent);
+
                         WebApp_Funcs.PageGenerator(httpContent, routeParm);
                         break;
 
+                    case WebApp_AppModels.RequestHandler.RoutingTypes.PAGE_AJAX:
+                        // Update session
+
+                        WebApp_Funcs.UpdateSession(httpContent);
+
+                        WebApp_Funcs.PageGenerator(httpContent, routeParm);
+                        break;
                     case WebApp_AppModels.RequestHandler.RoutingTypes.COMPONENT:
 
                         var file = AppDomain.CurrentDomain.BaseDirectory + "WebApp.Extension.Tddesting";

@@ -33,10 +33,7 @@ namespace Media2A.WebApp
 
             pageOutput = WebApp_Funcs.Cms.ProcessTags(pageData, pageOutput, httpContent);
 
-            // Title
-            // pageOutput = CodeLogic_Funcs.SimpleReplaceTag(pageOutput, WebApp_AppModels.Cms.PageElements_Base.BODY.ToString(), pageModel.page_title);
-
-            // Generate menu
+            // Output
 
             httpContent.Response.WriteAsync(pageOutput);
         }
