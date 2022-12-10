@@ -7,20 +7,22 @@ namespace Media2A.WebApp
         public class WebApp_CMS_Pages
         {
             // Columns
-            public string page_id;
-            public string page_title;
-            public string page_description;
-            public string page_keywords;
-            public string page_content;
-            public string page_creationdatetime;
-            public string page_lastchangedatetime;
-            public string page_author;
-            public string page_tags;
-            public string page_permission;
-            public string page_published;
-            public string page_hits;
-            public string theme_id;
-            public string menu_id;
+            public string? page_id;
+
+            public string? page_title;
+            public string? page_description;
+            public string? page_keywords;
+            public string? page_content;
+            public string? page_creationdatetime;
+            public string? page_lastchangedatetime;
+            public string? page_author;
+            public string? page_tags;
+            public string? page_permission;
+            public string? page_type;
+            public bool? page_published;
+            public string? page_hits;
+            public string? theme_id;
+            public string? menu_id;
 
             public MySql_Models.Table ReturnTable()
             {
@@ -39,10 +41,14 @@ namespace Media2A.WebApp
                  new MySql_Models.Column() { Name = nameof(page_author), Datatype = MySql_Models.DataTypes.VARCHAR, Size = 255 },
                  new MySql_Models.Column() { Name = nameof(page_tags), Datatype = MySql_Models.DataTypes.VARCHAR, Size = 255 },
                  new MySql_Models.Column() { Name = nameof(page_permission), Datatype = MySql_Models.DataTypes.VARCHAR, Size = 255 },
+                 new MySql_Models.Column() { Name = nameof(page_type), Datatype = MySql_Models.DataTypes.VARCHAR, Size = 15 },
                  new MySql_Models.Column() { Name = nameof(page_published), Datatype = MySql_Models.DataTypes.TINYINT },
                  new MySql_Models.Column() { Name = nameof(page_hits), Datatype = MySql_Models.DataTypes.INT },
-                 new MySql_Models.Column() { Name = nameof(theme_id), Datatype = MySql_Models.DataTypes.VARCHAR, Size = 50 },
+                 new MySql_Models.Column() { Name = nameof(theme_id), Datatype = MySql_Models.DataTypes.VARCHAR, Size = 35 },
                  new MySql_Models.Column() { Name = nameof(menu_id), Datatype = MySql_Models.DataTypes.VARCHAR, Size = 50 },
+                };
+                table.Constraints = new MySql_Models.Constraints[] {
+                 new MySql_Models.Constraints() { ForeignKey = nameof(theme_id), ReferenceTable = "WebApp_CMS_Themes",  ReferenceKey = nameof(theme_id) }
                 };
 
                 return table;

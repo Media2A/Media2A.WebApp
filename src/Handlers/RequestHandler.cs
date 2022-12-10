@@ -7,48 +7,49 @@ namespace Media2A.WebApp
     {
         public static void RequestHandler(HttpContext httpContent)
         {
-            // ----------- PROCESS HEADERS AND CHECKS ------------
 
-            // Enforce https if enabled in config
+                // ----------- PROCESS HEADERS AND CHECKS ------------
 
-            WebApp_Funcs.HttpsEnforce(httpContent);
+                // Enforce https if enabled in config
 
-            // Http headers check - Access-Control-Allow-Origin, etc...
+                WebApp_Funcs.HttpsEnforce(httpContent);
 
-            WebApp_Funcs.HttpHeadersCheck(httpContent);
+                // Http headers check - Access-Control-Allow-Origin, etc...
 
-            // Run Security checks
+                WebApp_Funcs.HttpHeadersCheck(httpContent);
 
-            WebApp_Funcs.HttpSecurityCheck(httpContent);
+                // Run Security checks
 
-            // ----------- PROCESS REQUEST ------------
+                WebApp_Funcs.HttpSecurityCheck(httpContent);
 
-            var pathLookup = CodeLogic_Funcs.SplitUrlString(CodeLogic_Funcs.GetPath(httpContent), 1);
+                // ----------- PROCESS REQUEST ------------
 
-            switch (pathLookup)
-            {
-                case "install":
-                    httpContent.Response.WriteAsync("Ran installation process");
-                    InstallHandler(httpContent);
-                    break;
-                case "administration":
-                    httpContent.Response.WriteAsync("Administration page");
-                    break;
-                case "webapp":
-                    var pathLookupWebApp = CodeLogic_Funcs.SplitUrlString(CodeLogic_Funcs.GetPath(httpContent), 2);
-                    if (pathLookupWebApp == "module")
-                    {
-                        var pathLookupModuleName = CodeLogic_Funcs.SplitUrlString(CodeLogic_Funcs.GetPath(httpContent), 3);
-                        var pathLookupModuleParm = CodeLogic_Funcs.SplitUrlString(CodeLogic_Funcs.GetPath(httpContent), 4);
+                var pathLookup = CodeLogic_Funcs.SplitUrlString(CodeLogic_Funcs.GetPath(httpContent), 1);
 
-                        var moduleReturnCode = WebApp_Funcs.ProcessModule(pathLookupModuleName, pathLookupModuleParm);
-                        httpContent.Response.WriteAsync(moduleReturnCode);
-                    }
-                    break;
-                default:
-                    WebApp_Funcs.Routing(httpContent);
-                    break;
-            }
+                switch (pathLookup)
+                {
+                    case "install":
+                        httpContent.Response.WriteAsync("Ran installation process");
+                        InstallHandler(httpContent);
+                        break;
+                    case "administration":
+                        httpContent.Response.WriteAsync("Administration page");
+                        break;
+                    case "webapp":
+                        var pathLookupWebApp = CodeLogic_Funcs.SplitUrlString(CodeLogic_Funcs.GetPath(httpContent), 2);
+                        if (pathLookupWebApp == "module")
+                        {
+                            var pathLookupModuleName = CodeLogic_Funcs.SplitUrlString(CodeLogic_Funcs.GetPath(httpContent), 3);
+                            var pathLookupModuleParm = CodeLogic_Funcs.SplitUrlString(CodeLogic_Funcs.GetPath(httpContent), 4);
+
+                            var moduleReturnCode = WebApp_Funcs.ProcessModule(pathLookupModuleName, pathLookupModuleParm);
+                            httpContent.Response.WriteAsync(moduleReturnCode);
+                        }
+                        break;
+                    default:
+                        WebApp_Funcs.Routing(httpContent);
+                        break;
+                }
 
         }
     }
