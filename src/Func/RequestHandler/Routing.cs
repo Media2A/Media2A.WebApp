@@ -10,7 +10,7 @@ namespace Media2A.WebApp
         {
             var pathLookup = CodeLogic_Funcs.SplitUrlString(CodeLogic_Funcs.GetPath(httpContent), 1);
             var routingDataModel = new WebApp_DatabaseModels.WebApp_CMS_Routing();
-            var RoutingInfo = MySql_Queries.DataModel.GetDataByModelByID(routingDataModel.ReturnTable(), nameof(routingDataModel.route_url), pathLookup);
+            var RoutingInfo = MySql_Queries.DataModel.GetDataByModelByID(routingDataModel.GetType(), nameof(routingDataModel.route_url), pathLookup);
 
             return RoutingInfo;
         }

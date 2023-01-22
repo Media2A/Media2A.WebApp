@@ -13,11 +13,15 @@ namespace Media2A.WebApp
             string redirectUrl = httpContent.Request.GetEncodedUrl();
             string proto = httpContent.Request.Headers["X-Forwarded-Proto"];
 
-            if (enforceHttps & siteProxyEnabled & !proto.Contains("https"))
+            if(proto != null)
             {
-                redirectUrl = redirectUrl.Replace("http:", "https:");
-                httpContent.Response.Redirect(redirectUrl, false);
+                if (enforceHttps & siteProxyEnabled & !proto.Contains("https"))
+                {
+                    redirectUrl = redirectUrl.Replace("http:", "https:");
+                    httpContent.Response.Redirect(redirectUrl, false);
+                }
             }
+
         }
     }
 }

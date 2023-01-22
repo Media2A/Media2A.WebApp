@@ -1,8 +1,11 @@
-﻿namespace Media2A.WebApp
+﻿global using CodeLogic;
+global using CL.MySQL;
+
+namespace Media2A.WebApp
 {
     public partial class WebApp { }
 
-    // Declare Classes for CodeLogic
+    // Declare Partial Classes for CodeLogic
 
     // Default parameters for WebApp
     public partial class WebApp_Defaults { }

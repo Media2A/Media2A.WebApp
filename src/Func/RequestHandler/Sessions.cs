@@ -11,7 +11,7 @@ namespace Media2A.WebApp
             var sessionId = httpContent.Session.Id;
 
             var sessionDataModel = new WebApp_DatabaseModels.WebApp_Sessions();
-            var sessionData = MySql_Queries.DataModel.GetDataByModelByID(sessionDataModel.ReturnTable(), nameof(sessionDataModel.session_id), sessionId);
+            var sessionData = MySql_Queries.DataModel.GetDataByModelByID(sessionDataModel.GetType(), nameof(sessionDataModel.session_id), sessionId);
 
             // If session not registered in db... create it
 
@@ -44,7 +44,7 @@ namespace Media2A.WebApp
         {
             var sessionDataModel = new WebApp_DatabaseModels.WebApp_Sessions();
 
-            var sessionData = MySql_Queries.DataModel.GetAllDataByModelByParm(sessionDataModel.ReturnTable(), new MySql_Models.QueryParameters()
+            var sessionData = MySql_Queries.DataModel.GetAllDataByModelByParm(sessionDataModel.GetType(), new MySql_Models.QueryParameters()
             {
                 Select = new MySql_Models.Select[] {
                     new MySql_Models.Select { ColumnName = nameof(sessionDataModel.session_data)
@@ -68,7 +68,7 @@ namespace Media2A.WebApp
         public static SortedDictionary<string, object> AddDataToSession(string sessionId)
         {
             var sessionDataModel = new WebApp_DatabaseModels.WebApp_Sessions();
-            var RoutingInfo = MySql_Queries.DataModel.GetDataByModelByID(sessionDataModel.ReturnTable(), nameof(sessionDataModel.session_id), sessionId);
+            var RoutingInfo = MySql_Queries.DataModel.GetDataByModelByID(sessionDataModel.GetType(), nameof(sessionDataModel.session_id), sessionId);
 
             return RoutingInfo;
         }

@@ -5,9 +5,11 @@ namespace Media2A.WebApp
 {
     public partial class WebApp_Handlers
     {
-        public static void RequestHandler(HttpContext httpContent)
+        public static async Task RequestHandler(HttpContext httpContent)
         {
 
+            await Task.Run(() =>
+            {
                 // ----------- PROCESS HEADERS AND CHECKS ------------
 
                 // Enforce https if enabled in config
@@ -50,6 +52,8 @@ namespace Media2A.WebApp
                         WebApp_Funcs.Routing(httpContent);
                         break;
                 }
+            });
+
 
         }
     }
