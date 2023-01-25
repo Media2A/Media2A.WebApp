@@ -10,6 +10,19 @@ namespace Media2A.WebApp
         public static void Configuration()
         {
 
+            // Make sure folders exist
+
+            var path = CodeLogic_Defaults.GetBaseFilePath();
+
+            string[] dirs = { "configs", "localization", "logs", "storage" };
+
+            foreach (var item in dirs)
+            {
+                Directory.CreateDirectory(item);
+            }
+
+            Directory.CreateDirectory(path);
+
             // Localization files
             CodeLogic_Framework.CacheLocalizationFiles();
 
