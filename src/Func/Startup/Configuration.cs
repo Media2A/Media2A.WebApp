@@ -2,6 +2,7 @@
 using CL.Smtp.ConfigModels;
 using CodeLogic;
 using Media2A.WebApp.ConfigModels;
+using System.Xml.XPath;
 
 namespace Media2A.WebApp
 {
@@ -12,13 +13,13 @@ namespace Media2A.WebApp
 
             // Make sure folders exist
 
-            var path = CodeLogic_Defaults.GetBaseFilePath();
+            var path = CodeLogic_Defaults.GetDataFilePath();
 
             string[] dirs = { "configs", "localization", "logs", "storage" };
 
             foreach (var item in dirs)
             {
-                Directory.CreateDirectory(item);
+                Directory.CreateDirectory(path + item);
             }
 
             Directory.CreateDirectory(path);
