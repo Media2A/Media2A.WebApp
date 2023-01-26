@@ -45,7 +45,6 @@ namespace Media2A.WebApp
 
             var pageOutput = themeTemplate;
 
-            // var menuContent = GenerateMenuByID(pageModel.menu_id);
             context.Response.WriteAsync(pageOutput);
         }
     }

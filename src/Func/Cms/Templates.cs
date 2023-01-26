@@ -29,7 +29,7 @@ namespace Media2A.WebApp
             }
             public static string GetTemplateStaticDefault(string file)
             {
-                var filePath = $"{CodeLogic_Defaults.GetBaseFilePath()}/app/wwwroot/WebApp/Themes/Default/" + file;
+                var filePath = $"{CodeLogic_Defaults.GetBaseFilePath()}/wwwroot/WebApp/Themes/Default/" + file;
 
                 var templateModel = CodeLogic_Funcs.ReadTextFile(filePath);
 
