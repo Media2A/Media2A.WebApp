@@ -30,13 +30,16 @@ namespace Media2A.WebApp
 
                 switch (pathLookup)
                 {
+                    // Installer
                     case "install":
                         httpContent.Response.WriteAsync("Ran installation process");
                         InstallHandler(httpContent);
                         break;
+                    // Administration plugin
                     case "administration":
                         httpContent.Response.WriteAsync("Administration page");
                         break;
+                    // WebApp functions
                     case "webapp":
                         var pathLookupWebApp = CodeLogic_Funcs.SplitUrlString(CodeLogic_Funcs.GetPath(httpContent), 2);
                         if (pathLookupWebApp == "module")
