@@ -10,14 +10,14 @@ namespace Media2A.WebApp
         {
             var sessionId = httpContent.Session.Id;
 
-            var sessionDataModel = new WebApp_DatabaseModels.WebApp_Sessions();
+            var sessionDataModel = new DatabaseModels.Sessions();
             var sessionData = MySql_Queries.DataModel.GetDataByModelByID(sessionDataModel.GetType(), nameof(sessionDataModel.session_id), sessionId);
 
             // If session not registered in db... create it
 
             if (sessionData.Count == 0)
             {
-                WebApp_DatabaseModels.WebApp_Sessions s = new WebApp_DatabaseModels.WebApp_Sessions();
+                DatabaseModels.Sessions s = new DatabaseModels.Sessions();
                 s.session_id = httpContent.Session.Id;
                 s.session_uniqueId = Guid.NewGuid().ToString();
                 s.session_clientId = Guid.NewGuid().ToString();
@@ -32,7 +32,7 @@ namespace Media2A.WebApp
             }
             else
             {
-                WebApp_DatabaseModels.WebApp_Sessions s = new WebApp_DatabaseModels.WebApp_Sessions();
+                DatabaseModels.Sessions s = new DatabaseModels.Sessions();
                 s.session_dateTimeLast = DateTime.Now.ToString("yyyy-MM-dd H:mm:ss");
                 s.session_lastUrl = CodeLogic_Funcs.GetRawUrl(httpContent);
 
@@ -42,7 +42,7 @@ namespace Media2A.WebApp
 
         public static string GetSessionData(string sessionId, string key)
         {
-            var sessionDataModel = new WebApp_DatabaseModels.WebApp_Sessions();
+            var sessionDataModel = new DatabaseModels.Sessions();
 
             var sessionData = MySql_Queries.DataModel.GetAllDataByModelByParm(sessionDataModel.GetType(), new MySql_Models.QueryParameters()
             {
@@ -67,7 +67,7 @@ namespace Media2A.WebApp
 
         public static SortedDictionary<string, object> AddDataToSession(string sessionId)
         {
-            var sessionDataModel = new WebApp_DatabaseModels.WebApp_Sessions();
+            var sessionDataModel = new DatabaseModels.Sessions();
             var RoutingInfo = MySql_Queries.DataModel.GetDataByModelByID(sessionDataModel.GetType(), nameof(sessionDataModel.session_id), sessionId);
 
             return RoutingInfo;

@@ -1,14 +1,13 @@
-﻿using CL.MySQL;
-using CL.MySQL.MySqlModels;
+﻿using CL.MySQL.MySqlModels;
 
 namespace Media2A.WebApp
 {
-    public partial class WebApp_DatabaseModels
+    public partial class DatabaseModels
     {
-        public class WebApp_CMS_Pages
+        public class CMS_Pages
         {
             // Columns
-            [CP(Datatype = MySql_Models.DataTypes.VARCHAR, Size = 35, Primary = true)]
+            [CP(Datatype = MySql_Models.DataTypes.VARCHAR, Size = 36, Primary = true)]
             public string? page_id;
 
             [CP(Datatype = MySql_Models.DataTypes.VARCHAR, Size = 50)]
@@ -48,10 +47,8 @@ namespace Media2A.WebApp
             public string? page_hits;
 
             [CP(Datatype = MySql_Models.DataTypes.VARCHAR, Size = 35)]
+            [CA(ReferenceKey = nameof(CMS_Themes.theme_id), ReferenceTable = nameof(CMS_Themes))]
             public string? theme_id;
-
-            [CP(Datatype = MySql_Models.DataTypes.VARCHAR, Size = 35)]
-            public string? menu_id;
 
         }
     }

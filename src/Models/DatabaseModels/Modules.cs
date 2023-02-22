@@ -5,9 +5,9 @@ using System.Drawing;
 
 namespace Media2A.WebApp
 {
-    public partial class WebApp_DatabaseModels
+    public partial class DatabaseModels
     {
-        public class WebApp_Modules
+        public class Modules
         {
             // Columns
             [CP(Datatype = MySql_Models.DataTypes.CHAR, Size = 35, Primary = true)]

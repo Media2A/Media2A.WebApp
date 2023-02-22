@@ -3,9 +3,9 @@ using CL.MySQL.MySqlModels;
 
 namespace Media2A.WebApp
 {
-    public partial class WebApp_DatabaseModels
+    public partial class DatabaseModels
     {
-        public class WebApp_CMS_Themes
+        public class CMS_Themes
         {
             // Columns
             [CP(Datatype = MySql_Models.DataTypes.VARCHAR, Size = 35, Primary = true)]

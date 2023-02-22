@@ -11,7 +11,7 @@ namespace Media2A.WebApp
         private static void CreateTables()
         {
 
-            MySql_Queries.DataModel.CreateTablesFromModels(typeof(WebApp_DatabaseModels));
+            MySql_Queries.DataModel.CreateTablesFromModels(typeof(DatabaseModels));
             
         }
 

@@ -9,7 +9,7 @@ namespace Media2A.WebApp
         public static SortedDictionary<string, object> RoutingLookup(HttpContext httpContent)
         {
             var pathLookup = CodeLogic_Funcs.SplitUrlString(CodeLogic_Funcs.GetPath(httpContent), 1);
-            var routingDataModel = new WebApp_DatabaseModels.WebApp_CMS_Routing();
+            var routingDataModel = new DatabaseModels.CMS_Routing();
             var RoutingInfo = MySql_Queries.DataModel.GetDataByModelByID(routingDataModel.GetType(), nameof(routingDataModel.route_url), pathLookup);
 
             return RoutingInfo;
@@ -29,7 +29,7 @@ namespace Media2A.WebApp
             {
 
                 // Get routing model
-                var routingDataModel = new WebApp_DatabaseModels.WebApp_CMS_Routing();
+                var routingDataModel = new DatabaseModels.CMS_Routing();
 
                 // Process route type
                 var dbRouteType = nameof(routingDataModel.route_type);

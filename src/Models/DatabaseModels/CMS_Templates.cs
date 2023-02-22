@@ -4,14 +4,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Media2A.WebApp
 {
-    public partial class WebApp_DatabaseModels
+    public partial class DatabaseModels
     {
-        public class WebApp_CMS_Templates
+        public class CMS_Templates
         {
             // Columns
-            [CP(Datatype = MySql_Models.DataTypes.VARCHAR, Size = 50)]
+            [CP(Datatype = MySql_Models.DataTypes.VARCHAR, Size = 50, Primary = true)]
             public string template_id;
-            [CP(Datatype = MySql_Models.DataTypes.VARCHAR, Size = 255, Index = true)]
+            [CP(Datatype = MySql_Models.DataTypes.VARCHAR, Size = 255)]
             public string template_description;
             [CP(Datatype = MySql_Models.DataTypes.VARCHAR, Size = 35)]
             public string template_type;
@@ -20,6 +20,7 @@ namespace Media2A.WebApp
             [CP(Datatype = MySql_Models.DataTypes.VARCHAR, Size = 255)]
             public string template_reference;
             [CP(Datatype = MySql_Models.DataTypes.VARCHAR, Size = 255)]
+            [CA(ReferenceKey = nameof(CMS_Themes.theme_id), ReferenceTable = nameof(CMS_Themes))]
             public string theme_id;
 
         }

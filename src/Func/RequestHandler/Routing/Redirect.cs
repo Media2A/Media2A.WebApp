@@ -9,7 +9,7 @@ namespace Media2A.WebApp
         public static void Redirect(HttpContext httpContent)
         {
             var redirectId = CodeLogic_Funcs.SplitUrlString(CodeLogic_Funcs.GetPath(httpContent), 2);
-            var redirectDataModel = new WebApp_DatabaseModels.WebApp_CMS_Redirect();
+            var redirectDataModel = new DatabaseModels.CMS_Redirect();
             var redirectData = MySql_Queries.DataModel.GetDataByModelByID(redirectDataModel.GetType(), redirectDataModel.redirect_id, redirectId);
 
             httpContent.Response.Redirect(redirectData.GetValueOrDefault(redirectDataModel.redirect_url, true).ToString());

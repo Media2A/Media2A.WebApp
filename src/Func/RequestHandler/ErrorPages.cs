@@ -47,5 +47,40 @@ namespace Media2A.WebApp
 
             context.Response.WriteAsync(pageOutput);
         }
+
+        public static void DebugPage(HttpContext context, int errorCode, string customText)
+        {
+            // Get page template
+
+            var themeTemplate = WebApp_Funcs.Cms.GetTemplateStaticDefault("debug.html");
+
+            // Switch depending of error code
+
+            var langFile = "webapp.errorpage";
+
+            string header = "";
+            string desc = "";
+
+            switch (errorCode)
+            {
+                default:
+                    header = WebApp_Funcs.Cms.GetLocalizationString(langFile, "errorpage.0-header", context);
+                    desc = WebApp_Funcs.Cms.GetLocalizationString(langFile, "errorpage.0-desc", context);
+                    break;
+            }
+
+
+            themeTemplate = themeTemplate.Replace("{error}", errorCode.ToString());
+
+            themeTemplate = themeTemplate.Replace("{title}", $"{errorCode.ToString()} - {header}");
+            themeTemplate = themeTemplate.Replace("{header}", $"{header}");
+            themeTemplate = themeTemplate.Replace("{content}", $"{customText}");
+
+            // Do page work
+
+            var pageOutput = themeTemplate;
+
+            context.Response.WriteAsync(pageOutput);
+        }
     }
 }

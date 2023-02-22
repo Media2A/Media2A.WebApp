@@ -3,9 +3,9 @@ using CL.MySQL.MySqlModels;
 
 namespace Media2A.WebApp
 {
-    public partial class WebApp_DatabaseModels
+    public partial class DatabaseModels
     {
-        public class WebApp_CMS_Routing
+        public class CMS_Routing
         {
             [CP(Datatype = MySql_Models.DataTypes.INT, AutoIncrement = true, Primary = true)]
             public int route_id;

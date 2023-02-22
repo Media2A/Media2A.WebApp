@@ -64,7 +64,7 @@ namespace Media2A.WebApp
             {
 
                 var returnCode = "";
-                var pageModel = new WebApp_DatabaseModels.WebApp_CMS_Pages();
+                var pageModel = new DatabaseModels.CMS_Pages();
 
                 switch (Enum.Parse<WebApp_AppModels.Cms.PageElements>(tagContent))
                 {

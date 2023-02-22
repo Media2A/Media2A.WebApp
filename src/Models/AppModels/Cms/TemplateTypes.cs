@@ -6,11 +6,11 @@
         {
             public enum TemplateTypes
             {
-                ERROR,
-                MENU,
+                ERROR_PAGE,
                 PAGE,
-                MODULE,
+                EXTENSION_MODULE,
                 WIDGET,
+                LAYOUT,
                 THEME,
             }
         }

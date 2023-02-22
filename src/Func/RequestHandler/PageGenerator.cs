@@ -11,7 +11,7 @@ namespace Media2A.WebApp
         {
             // Get page data
 
-            var pageModel = new WebApp_DatabaseModels.WebApp_CMS_Pages();
+            var pageModel = new DatabaseModels.CMS_Pages();
             var pageData = MySql_Queries.DataModel.GetDataByModelByID(pageModel.GetType(), nameof(pageModel.page_id), routeParm);
 
             // Variables from data

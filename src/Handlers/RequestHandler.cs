@@ -7,55 +7,65 @@ namespace Media2A.WebApp
     {
         public static async Task RequestHandler(HttpContext httpContent)
         {
-
-            await Task.Run(() =>
+            try
             {
-                // ----------- PROCESS HEADERS AND CHECKS ------------
-
-                // Enforce https if enabled in config
-
-                WebApp_Funcs.HttpsEnforce(httpContent);
-
-                // Http headers check - Access-Control-Allow-Origin, etc...
-
-                WebApp_Funcs.HttpHeadersCheck(httpContent);
-
-                // Run Security checks
-
-                WebApp_Funcs.HttpSecurityCheck(httpContent);
-
-                // ----------- PROCESS REQUEST ------------
-
-                var pathLookup = CodeLogic_Funcs.SplitUrlString(CodeLogic_Funcs.GetPath(httpContent), 1);
-
-                switch (pathLookup)
+                await Task.Run(() =>
                 {
-                    // Installer
-                    case "install":
-                        httpContent.Response.WriteAsync("Ran installation process");
-                        InstallHandler(httpContent);
-                        break;
-                    // Administration plugin
-                    case "administration":
-                        httpContent.Response.WriteAsync("Administration page");
-                        break;
-                    // WebApp functions
-                    case "webapp":
-                        var pathLookupWebApp = CodeLogic_Funcs.SplitUrlString(CodeLogic_Funcs.GetPath(httpContent), 2);
-                        if (pathLookupWebApp == "module")
-                        {
-                            var pathLookupModuleName = CodeLogic_Funcs.SplitUrlString(CodeLogic_Funcs.GetPath(httpContent), 3);
-                            var pathLookupModuleParm = CodeLogic_Funcs.SplitUrlString(CodeLogic_Funcs.GetPath(httpContent), 4);
+                    // ----------- PROCESS HEADERS AND CHECKS ------------
 
-                            var moduleReturnCode = WebApp_Funcs.ProcessModule(pathLookupModuleName, pathLookupModuleParm);
-                            httpContent.Response.WriteAsync(moduleReturnCode);
-                        }
-                        break;
-                    default:
-                        WebApp_Funcs.Routing(httpContent);
-                        break;
-                }
-            });
+                    // Enforce https if enabled in config
+
+                    WebApp_Funcs.HttpsEnforce(httpContent);
+
+                    // Http headers check - Access-Control-Allow-Origin, etc...
+
+                    WebApp_Funcs.HttpHeadersCheck(httpContent);
+
+                    // Run Security checks
+
+                    WebApp_Funcs.HttpSecurityCheck(httpContent);
+
+                    // ----------- PROCESS REQUEST ------------
+
+                    var pathLookup = CodeLogic_Funcs.SplitUrlString(CodeLogic_Funcs.GetPath(httpContent), 1);
+
+                    switch (pathLookup)
+                    {
+                        // Installer
+                        case "install":
+                            InstallHandler(httpContent);
+                            httpContent.Response.WriteAsync("Ran installation process");
+                            break;
+                        // Administration plugin
+                        case "administration":
+                            httpContent.Response.WriteAsync("Administration page");
+                            break;
+                        // WebApp functions
+                        case "wa":
+                            var pathLookupWebApp = CodeLogic_Funcs.SplitUrlString(CodeLogic_Funcs.GetPath(httpContent), 2);
+                            if (pathLookupWebApp == "module")
+                            {
+                                var pathLookupModuleName = CodeLogic_Funcs.SplitUrlString(CodeLogic_Funcs.GetPath(httpContent), 3);
+                                var pathLookupModuleParm = CodeLogic_Funcs.SplitUrlString(CodeLogic_Funcs.GetPath(httpContent), 4);
+
+                                var moduleReturnCode = CodeLogic_Funcs.ObjectToByteArray(WebApp_Funcs.ProcessModule(pathLookupModuleName, pathLookupModuleParm));
+                                httpContent.Response.ContentType = "image/jpeg";
+
+                                httpContent.Response.Body.WriteAsync(moduleReturnCode, 0, moduleReturnCode.Length);
+                            }
+                            break;
+                        default:
+                            WebApp_Funcs.Routing(httpContent);
+                            break;
+                    }
+                });
+            }
+
+            catch (Exception e)
+            {
+                WebApp_Funcs.DebugPage(httpContent, 404, e.ToString());
+            }
+
 
 
         }

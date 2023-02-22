@@ -14,7 +14,7 @@ namespace Media2A.WebApp
     public partial class WebApp_AppModels { }
 
     // Default MySql tables
-    public partial class WebApp_DatabaseModels { }
+    public partial class DatabaseModels { }
 
     // WebApp handlers
     public partial class WebApp_Handlers { }

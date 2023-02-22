@@ -9,7 +9,7 @@ namespace Media2A.WebApp
         {
             // Get module info
 
-            var moduleModel = new WebApp_DatabaseModels.WebApp_Modules();
+            var moduleModel = new DatabaseModels.Modules();
             var moduleData = MySql_Queries.DataModel.GetDataByModelByID(moduleModel.GetType(), moduleModel.module_id, moduleName);
 
             var funcName = moduleData.GetValueOrDefault(moduleModel.module_func);

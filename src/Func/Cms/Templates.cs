@@ -9,7 +9,7 @@ namespace Media2A.WebApp
         {
             public static string GetTemplateByID(string templateId)
             {
-                var templateModel = new WebApp_DatabaseModels.WebApp_CMS_Templates();
+                var templateModel = new DatabaseModels.CMS_Templates();
 
                 var templateContent = CL.MySQL.MySql_Queries.DataModel.GetDataByModelByID(templateModel.GetType(), nameof(templateModel.template_id), templateId);
 
@@ -18,7 +18,7 @@ namespace Media2A.WebApp
 
             public static string GetTemplateByIDWithReplace(string templateId, List<string[]> ts)
             {
-                var templateModel = new WebApp_DatabaseModels.WebApp_CMS_Templates();
+                var templateModel = new DatabaseModels.CMS_Templates();
 
                 var menuData = CL.MySQL.MySql_Queries.DataModel.GetDataByModelByID(templateModel.GetType(), nameof(templateModel.template_id), templateId);
 
